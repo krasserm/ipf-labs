@@ -1,0 +1,1 @@
+ function(doc) { emit(doc.key, 2); }

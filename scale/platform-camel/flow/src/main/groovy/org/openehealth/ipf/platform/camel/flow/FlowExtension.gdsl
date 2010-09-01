@@ -1,0 +1,6 @@
+contributor([context(ctype: 'org.apache.camel.model.ProcessorDefinition')]) {
+    method name: 'initFlow', type: 'org.openehealth.ipf.platform.camel.flow.BeginFlowDefinition'
+    method name: 'ackFlow', type: 'org.openehealth.ipf.platform.camel.flow.FlowDefinition'
+    method name: 'nakFlow', type: 'org.openehealth.ipf.platform.camel.flow.FlowDefinition'
+}
+

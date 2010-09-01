@@ -1,0 +1,54 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+">
+
+    <import resource="commons-message.xml"/>
+
+    <bean id="ipf.messageStore" class="org.openehealth.ipf.commons.message.CouchMessageStore">
+        <property name="store" ref="ipf.store"/>
+        <property name="database" ref="ipf.couchdb"/>
+    </bean>
+
+    <bean class="org.openehealth.ipf.commons.utils.couch.spring.DesignDocUpdater" init-method="update">
+        <property name="db" ref="ipf.couchdb" />
+        <property name="designDocId" value="_design/msg" />
+        <property name="resources">
+            <map>
+                <entry key="views/getAllMessages/map"
+                       value="org/openehealth/ipf/commons/message/designs/msg/getAllMessages.map.js" />
+                <entry key="views/getMsgByApp/map"
+                       value="org/openehealth/ipf/commons/message/designs/msg/getMsgByApp.map.js"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.openehealth.ipf.commons.utils.couch.spring.DesignDocUpdater" init-method="update">
+        <property name="db" ref="ipf.couchdb"/>
+        <property name="designDocId" value="_design/msgMetaData"/>
+        <property name="resources">
+            <map>
+                <entry key="views/getMetaDataByMsgId/map"
+                       value="org/openehealth/ipf/commons/message/designs/msgMetaData/getMetaDataByMsgId.map.js"/>
+                <entry key="views/getMsgByMetaData/map"
+                       value="org/openehealth/ipf/commons/message/designs/msgMetaData/getMsgByMetaData.map.js"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.openehealth.ipf.commons.utils.couch.spring.DesignDocUpdater" init-method="update">
+        <property name="db" ref="ipf.couchdb"/>
+        <property name="designDocId" value="_design/lucene"/>
+        <property name="resources">
+            <map>
+                <entry key="fulltext/msgMetaDataByValue/index"
+                       value="org/openehealth/ipf/commons/message/designs/lucene/msgMetaDataByValue.index.js"/>
+            </map>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,6 @@
+Incubator and experimental stuff for the eHealth Integration Framework "IPF":http://github.com/krasserm/ipf. Find out more at the "IPF Labs Wiki":http://repo.openehealth.org/confluence/display/ipflab/Home.
+
+h2. History
+
+The project was originally developed at the "Gforge IPF Lab Subversion repository":http://gforge.openehealth.org/svn/ipf-lab/ (requires access with username _anonymous_ and empty password).  The project history has not been imported.
+ 

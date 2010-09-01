@@ -1,0 +1,220 @@
+/* Layout styles */
+
+.appsGrid {
+    position: absolute;
+    top: 2em;
+    left: 0;
+    bottom: 0;
+    width: 9.8em;
+    overflow: auto;
+    font-size: 80%;
+}
+
+.appsGridHeader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1em;
+    width: 9.8em;
+    font-size: 80%;
+}
+
+.msgAndFlowPanel {
+    position: absolute;
+    left: 10em;
+    right: 0;
+    top: 0;
+    bottom: 1.5em;
+    font-size: 80%;
+}
+
+.msgPanel {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+}
+
+.msgGrid {
+    position: absolute;
+    top: 2em;
+    bottom: 0;
+    overflow: auto;
+}
+
+.msgGridHeader {
+    position: absolute;
+    top: 0;
+}
+
+.flowPanel {
+    position: absolute;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+}
+
+.flowGrid {
+    position: absolute;
+    top: 2em;
+    bottom: 0;
+    overflow: auto;
+}
+
+.flowGridHeader {
+    position: absolute;
+    top: 0;
+}
+
+.msgButtons {
+    position: absolute;
+    left: 10em;
+    right: 0;
+    height: 1.5em;
+    bottom: 0;
+    cursor: pointer;
+    font-size: 80%;
+}
+
+/* styles of base widgets */
+
+.textButton {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    unselectable: on;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+}
+
+.disabledTextButton {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    unselectable: on;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    color: #c0c0c0;
+}
+
+.grid {
+    table-layout: fixed;
+    color: black;
+    cursor: default;
+    width: 100%;
+    font-size: 80%;
+}
+
+.gridHeader {
+    table-layout: fixed;
+    color: black;
+    font-weight: bold;
+    cursor: default;
+    background-color: #e0e0ff;
+    width: 100%;
+    font-size: 80%;
+}
+
+.selected-grid-row {
+    background-color:#6495ed;
+    color: white;
+    cursor: default;
+}
+
+.even-grid-row {
+    background-color: white;
+    cursor: default;
+}
+
+.odd-grid-row {
+    background-color: #f0f0ff;
+    cursor: default;
+}
+
+.gwt-HTML {
+    font-size: 80%;
+}
+
+.gwt-Label {
+    font-size: 80%;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+  width: 400px;
+}
+
+.dialogVPanel {
+  margin: 5px;
+}
+
+.serverResponseLabelError {
+  color: red;
+}
+
+.msgDetails {
+  table-layout: fixed;
+  width: 100%;
+  color: black;
+}
+
+
+.smallButton {
+    font-size: 80%;
+}
+
+.vertPanel .vsplitter {
+  cursor: n-resize;
+  background-color: #6495ed;
+  border-top: 1px solid #BBBBBB;
+  border-bottom: 1px solid #BBBBBB;
+}
+
+.horzPanel .hsplitter {
+  cursor: w-resize;
+  background-color: #6495ed;
+  border-left: 1px solid #BBBBBB;
+  border-right: 1px solid #BBBBBB;
+}
+
+.menuPanel {
+  position: absolute;
+  bottom: 0px;
+  height: 40px;
+}
+
+.horzPanel {
+  height: 95%;
+}
+
+.tabs {
+    font-size: 80%;
+  border: 0px;
+}
+
+.tabsbar {
+}
+
+.tabsbar .gwt-TabBarFirst {
+  width: 0px;  /* first tab distance from the left */
+}
+
+.tabsbar .gwt-TabBarItem {
+  margin-left: 6px;
+  padding: 3px 6px 3px 6px;
+  cursor: pointer;
+  cursor: hand;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: #d0e4f6;
+    font-size: 80%;
+}
+
+.tabsbar .gwt-TabBarItem-selected {
+  cursor: default;
+  background: #92c1f0;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+  margin: 15px 6px 6px;
+}
+

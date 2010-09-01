@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+">
+
+    <import resource="commons-flow.xml"/>
+
+    <context:annotation-config/>
+    <tx:annotation-driven/>
+
+    <bean class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+        <property name="persistenceXmlLocations">
+            <list>
+                <value>classpath*:META-INF/persistence-flow.xml</value>
+            </list>
+        </property>
+        <property name="defaultDataSource" ref="ipf.dataSource"/>
+    </bean>
+
+    <bean id="ipf.flowStore" class="org.openehealth.ipf.commons.flow.JpaFlowStore">
+        <property name="store" ref="ipf.store"/>
+        <property name="msgStore" ref="ipf.messageStore"/>
+    </bean>
+</beans>

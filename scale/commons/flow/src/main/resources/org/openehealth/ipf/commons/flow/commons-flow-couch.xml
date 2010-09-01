@@ -1,0 +1,36 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+">
+    <import resource="commons-flow.xml"/>
+
+    <bean id="ipf.flowStore" class="org.openehealth.ipf.commons.flow.CouchFlowStore">
+        <property name="store" ref="ipf.store"/>
+        <property name="database" ref="ipf.couchdb"/>
+        <property name="msgStore" ref="ipf.messageStore"/>
+    </bean>
+
+    <bean class="org.openehealth.ipf.commons.utils.couch.spring.DesignDocUpdater" init-method="update">
+        <property name="db" ref="ipf.couchdb"/>
+        <property name="designDocId" value="_design/flow"/>
+        <property name="resources">
+            <map>
+                <entry key="views/getAllApplications/map"
+                       value="org/openehealth/ipf/commons/flow/designs/flow/getAllApplications.map.js"/>
+                <entry key="views/getAllApplications/reduce"
+                       value="org/openehealth/ipf/commons/flow/designs/flow/getAllApplications.reduce.js"/>
+                <entry key="views/getAllFlows/map"
+                       value="org/openehealth/ipf/commons/flow/designs/flow/getAllFlows.map.js"/>
+                <entry key="views/getFlowsByApp/map"
+                       value="org/openehealth/ipf/commons/flow/designs/flow/getFlowsByApp.map.js"/>
+                <entry key="views/getFlowsByMessage/map"
+                       value="org/openehealth/ipf/commons/flow/designs/flow/getFlowsByMessage.map.js"/>
+            </map>
+        </property>
+    </bean>
+</beans>

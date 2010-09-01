@@ -1,0 +1,30 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://camel.apache.org/schema/spring
+http://camel.apache.org/schema/spring/camel-spring.xsd
+">
+    <import resource="org/openehealth/ipf/commons/store/commons-store-couch.xml"/>
+    <import resource="org/openehealth/ipf/commons/message/commons-message-couch.xml"/>
+    <import resource="org/openehealth/ipf/commons/flow/commons-flow-couch.xml"/>
+    <import resource="org/openehealth/ipf/platform/camel/message/platform-camel-message.xml"/>
+
+    <bean id="ipf.couchdbCreator" class="org.openehealth.ipf.commons.utils.couch.spring.CouchDbFactory">
+        <property name="uri" value="http://localhost:5984" />
+        <property name="name" value="ipf" />
+    </bean>
+
+    <camel:camelContext id="camelContext">
+        <camel:routeBuilder ref="appRouteBuilder"/>
+    </camel:camelContext>
+
+    <bean id="appRouteBuilder" class="org.openehealth.ipf.platform.camel.flow.admin.server.AppRouteBuilder" />
+
+    <bean id="demoData" class="org.openehealth.ipf.platform.camel.flow.admin.server.DemoData">
+        <property name="flowStore" ref="ipf.flowStore" />
+        <property name="msgStore" ref="ipf.messageStore" />
+    </bean>
+</beans>

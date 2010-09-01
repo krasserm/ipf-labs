@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+">
+
+    <import resource="org/openehealth/ipf/commons/store/commons-store-jpa.xml"/>
+    <import resource="org/openehealth/ipf/commons/message/commons-message-jpa.xml"/>
+    <import resource="org/openehealth/ipf/commons/flow/commons-flow-jpa.xml"/>
+
+    <bean id="ipf.dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+        <property name="url" value="jdbc:derby:memory:store;create=true"/>
+    </bean>
+</beans>
