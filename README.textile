@@ -1,4 +1,7 @@
-Incubator and experimental stuff for the eHealth Integration Framework "IPF":http://github.com/krasserm/ipf. Find out more at the "IPF Labs Wiki":http://repo.openehealth.org/confluence/display/ipflab/Home.
+Incubator and experimental stuff for the eHealth Integration Framework "IPF":http://github.com/krasserm/ipf. Currently contained are:
+
+* A CouchDB-based message store and flow management service ("details":http://repo.openehealth.org/confluence/display/ipflab/Message+Storage+in+a+NoSQL+Database).  
+* A Maven plugin for generating GDSL descriptors for IntelliJ IDEA.
 
 h2. History
 
