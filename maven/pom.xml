@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.openehealth.ipf.labs.maven</groupId>
+    <artifactId>maven</artifactId>
+    <name>maven</name>
+    <packaging>pom</packaging>
+    <version>1.1-SNAPSHOT</version>
+
+    <properties>
+        <release-plugin-version>2.0-beta-9</release-plugin-version>
+    </properties>
+
+    <modules>
+        <module>maven-dsldoc-plugin</module>
+    </modules>
+
+    <scm>
+        <connection>cm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</connection>
+        <developerConnection>scm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</developerConnection>
+        <url>scm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <repository>
+            <id>openehealth.releases</id>
+            <name>Open eHealth Releases Repository</name>
+            <url>file:/data/repositories/maven2/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>openehealth.snapshots</id>
+            <name>Open eHealth Snapshots Repository</name>
+            <url>file:/data/repositories/maven2/snapshots</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${release-plugin-version}</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
