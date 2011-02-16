@@ -15,7 +15,6 @@
  */
 package org.openehealth.ipf.labs.maven.dsldoc;
 
-import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.*;
 import org.apache.maven.plugin.logging.Log;
 
@@ -65,7 +64,7 @@ public class Extractor {
      *          if reading or writing a file failed.
      */
     public void processGDSL(String module, File outputDirectory, String[] sourceDir, Log log) throws IOException {
-        JavaDocBuilder builder = addSources(sourceDir, log);
+        DslDocBuilder builder = addSources(sourceDir, log);
         if (builder.getSources().length == 0) {
             log.info("No sources found.");
             return;
@@ -108,7 +107,7 @@ public class Extractor {
      *          if reading or writing a file failed.
      */
     public void processDSLIndex(String module, File outputDirectory, String[] sourceDirs, Log log) throws IOException {
-        JavaDocBuilder builder = addSources(sourceDirs, log);
+    	DslDocBuilder builder = addSources(sourceDirs, log);
         if (builder.getSources().length == 0) {
             log.info("No sources found.");
             return;
@@ -134,8 +133,8 @@ public class Extractor {
         }
     }
     
-    private JavaDocBuilder addSources(String[] files, Log log) {
-        JavaDocBuilder builder = new JavaDocBuilder();
+    private DslDocBuilder addSources(String[] files, Log log) {
+    	DslDocBuilder builder = new DslDocBuilder(log);
         for (String filename : files) {
             File file = new File(filename);
             if (file.exists()) {

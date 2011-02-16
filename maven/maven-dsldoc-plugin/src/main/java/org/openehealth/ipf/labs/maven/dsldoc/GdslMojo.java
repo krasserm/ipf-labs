@@ -30,7 +30,7 @@ public class GdslMojo extends AbstractDocMojo {
         try {
             getLog().info("Building GDSL support for IDEA");
             if (sourceTrees == null || sourceTrees.length == 0) {
-                sourceTrees = new String[] { sourceDirectory, groovyGeneratedStubs };
+                sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }
             new Extractor(types).processGDSL(project.getName(), outputDirectory, sourceTrees, getLog());
         }

@@ -32,7 +32,7 @@ public class DslIndexMojo extends AbstractDocMojo {
         try {
             getLog().info("Building DSL Index");
             if (sourceTrees == null || sourceTrees.length == 0) {
-                sourceTrees = new String[] { sourceDirectory, groovyGeneratedStubs };
+                sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }
             getLog().info("Using source trees: " + Arrays.toString(sourceTrees));
             new Extractor(types).processDSLIndex(project.getName(), buildDirectory, sourceTrees, getLog());

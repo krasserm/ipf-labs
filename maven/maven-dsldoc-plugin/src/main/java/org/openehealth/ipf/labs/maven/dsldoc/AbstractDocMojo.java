@@ -45,13 +45,13 @@ public abstract class AbstractDocMojo extends AbstractMojo {
     /**
      * @parameter default-value="${project.build.sourceDirectory}"
      */
-    protected String sourceDirectory;
+    protected String javaDSLSourceDirectory;
 
     /**
-     * @parameter default-value="${project.build.directory}/generated-sources/groovy-stubs/main"
+     * @parameter default-value="${project.basedir}/src/main/groovy"
      */
-    protected String groovyGeneratedStubs;
-
+    protected String groovyDSLSourceDirectory;
+    
     /**
      * Location of the output directory.
      * @parameter expression="${output.directory}" default-value="${project.build.outputDirectory}"
