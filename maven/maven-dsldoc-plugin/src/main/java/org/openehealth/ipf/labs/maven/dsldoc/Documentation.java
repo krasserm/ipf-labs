@@ -56,6 +56,18 @@ public class Documentation {
         }
         return str.toString();
     }
+    
+    
+    /**
+     * @return the GDSL as a String.
+     */
+    public String toStringDSLD() {
+        StringBuilder str = new StringBuilder();
+        for (ModuleInfo moduleInfo : modules) {
+            str.append(moduleInfo.toStringDSLD());
+        }
+        return str.toString();
+    }
 
     /**
      * Adds a DSL method to the documentation.

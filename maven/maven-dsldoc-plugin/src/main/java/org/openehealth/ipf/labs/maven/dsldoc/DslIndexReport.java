@@ -46,6 +46,12 @@ public class DslIndexReport extends AbstractMavenReport {
     private MavenProject project;
 
     /**
+     * @parameter default-value="${project.name}"
+     * @readonly
+     */
+    protected String projectName;
+    
+    /**
      * @component
      * @required
      * @readonly
@@ -77,7 +83,7 @@ public class DslIndexReport extends AbstractMavenReport {
             }
         }
 
-        getSink().rawText("<html><head><title>IPF extensions index</title></head><body>");
+        getSink().rawText("<html><head><title>" + projectName + " DSL extensions index</title></head><body>");
         getSink().rawText(mergedContent.toString());
         getSink().rawText("</body></html>");
 

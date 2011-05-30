@@ -22,6 +22,11 @@ import java.util.List;
  * Information about a documented DSL method.
  */
 public class MethodInfo implements Comparable<MethodInfo> {
+    private static final String TAB = "    ";
+    private static final String TWO_TABS = TAB + TAB;
+    private static final String NEWLINE = "\r\n";
+    
+    
     private final String methodName;
     private final String comment;
     private final List<ParamInfo> paramInfos;
@@ -50,7 +55,7 @@ public class MethodInfo implements Comparable<MethodInfo> {
     }
 
     /**
-     * @return the GDSL for the method.
+     * @return the GDSL (Idea) for the method.
      */
     public String toStringGDSL() {
         StringBuilder str = new StringBuilder();
@@ -77,6 +82,61 @@ public class MethodInfo implements Comparable<MethodInfo> {
         return str.toString();
     }
 
+
+    /**
+     * @return the DSLD (Eclipse) for the method.
+     */
+    public String toStringDSLD() {
+        StringBuilder str = new StringBuilder();
+        str.append("method "); 
+        
+        str.append(escape("name", methodName));
+        str.append(", ");
+        str.append(escape("type", returnParam.getTypeFull()));
+        if (!paramInfos.isEmpty()) {
+            str.append(", params: [");
+            boolean first = true;
+            for (ParamInfo paramInfo : paramInfos) {
+                if (!first) {
+                    str.append(", ");
+                }
+                str.append(escape(paramInfo.getName(), paramInfo.getTypeFull()));
+                first = false;
+            }
+            str.append("]");
+        }
+        if (comment != null && !"".equals(comment)){
+            str.append(", ");
+            str.append(escapeDoc("doc", comment));
+        }
+        return str.toString();
+    }
+    
+    private String escapeDoc(String key, String comment){
+        String valueEscaped = comment.replaceAll("\'", "\"").replaceAll("\"", "\\\\\"");
+        String newLinesEscaped = valueEscaped.replaceAll(NEWLINE, TWO_TABS + NEWLINE);
+        //separate the doc
+        StringBuilder wrapped = new StringBuilder();
+        wrapped.append("\"\"\"" + NEWLINE);
+        wrapped.append(TWO_TABS).append(newLinesEscaped).append(NEWLINE);
+        wrapped.append(TWO_TABS).append("\"\"\"");
+        return  keyValue(key, wrapped.toString()) ; 
+    }
+    
+    
+    private String escape(String key, String value){
+        //escaped the contained " and '
+        String valueEscaped = value.replaceAll("\'", "\"").replaceAll("\"", "\\'"); 
+        return keyValue(key, "\'" + valueEscaped + "\'");
+    }
+    private String keyValue(String key, String value){
+        StringBuilder str = new StringBuilder();
+        str.append(key);
+        str.append(" : ");
+        str.append(value);
+        return str.toString();
+    }
+    
     /**
      * @return the HTML documentation of the method.
      */

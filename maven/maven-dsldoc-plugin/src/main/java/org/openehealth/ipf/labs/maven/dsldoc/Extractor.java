@@ -18,6 +18,8 @@ package org.openehealth.ipf.labs.maven.dsldoc;
 import com.thoughtworks.qdox.model.*;
 import org.apache.maven.plugin.logging.Log;
 
+import groovy.lang.GroovyClassLoader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -27,10 +29,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Extracts DSL documentation in the two supported formats (GDSL and HTML).
+ * Extracts DSL documentation in the three supported formats (GDSL, DSLD and HTML).
  * Extraction is performed by feeding the sources to QDox. Then the parts of the documentation (methods and their
  * parameters) related to DSL extensions are extracted and grouped into modules and sections. Modules correspond to
- * the Maven modules/artifacts, sections correspond to classes. Finally, the desired format (GDSL or HTML) is generated
+ * the Maven modules/artifacts, sections correspond to classes. Finally, the desired format is generated
  * by a calling a toStringXXX() method on resulting documentation object and the text is written into the output files.
  */
 public class Extractor {
@@ -63,8 +65,9 @@ public class Extractor {
      * @throws IOException
      *          if reading or writing a file failed.
      */
-    public void processGDSL(String module, File outputDirectory, String[] sourceDir, Log log) throws IOException {
+    public void processDSLs(String module, File outputDirectory, String[] sourceDir, Log log) throws IOException {
         DslDocBuilder builder = addSources(sourceDir, log);
+        builder.getClassLibrary().addClassLoader(new GroovyClassLoader());
         if (builder.getSources().length == 0) {
             log.info("No sources found.");
             return;
@@ -77,19 +80,50 @@ public class Extractor {
                     for (JavaMethod method : cls.getMethods()) {
                         registerMethod(module, cls, method);
                     }
-
-                    File gdslFile = new File(outputDirectory, cls.getPackageName().replace(".", "/") + "/" + cls.getName() + ".gdsl");
-                    log.info("Writing " + gdslFile.getPath());
-                    BufferedWriter writer = new BufferedWriter(new FileWriter(gdslFile));
-                    try {
-                        writer.write(doc.toStringGDSL());
-                        writer.write(doc.toStringGDSL());
-                    }
-                    finally {
-                        writer.close();
-                    }
+                    writeGDSLFile(outputDirectory, log, cls);
+                    writeDSLDFile(outputDirectory, log, cls);
                 }
             }
+        }
+    }
+
+  
+    private void writeGDSLFile(File outputDirectory, Log log, JavaClass cls) throws IOException {
+        File gdslFile = descriptorFileIDEA(outputDirectory, cls);
+        log.info("Writing IDEA descriptor " + gdslFile.getPath());
+        writeFile(gdslFile, doc.toStringGDSL());
+    }
+    
+    private void writeDSLDFile(File outputDirectory, Log log, JavaClass cls) throws IOException {
+        File gdslFile = descriptorFileEclipse(outputDirectory, cls, log);
+        log.info("Writing Eclipse Descriptor " + gdslFile.getPath());
+        writeFile(gdslFile, doc.toStringDSLD());
+    }
+
+    private File descriptorFileIDEA(File outputDirectory, JavaClass cls) {
+        File gdslFile = new File(outputDirectory, cls.getPackageName().replace(".", "/") + "/" + cls.getName() + ".gdsl");
+        return gdslFile;
+    }
+
+    private File descriptorFileEclipse(File outputDirectory, JavaClass cls, Log log) {
+        File parent = new File(outputDirectory, "dsld");
+        if (!parent.exists()){
+            boolean created = parent.mkdir();
+            if (!created){
+                log.error("Unable to create the directory for DSL metadata " + parent.getAbsolutePath());
+            }
+        }
+        File dsldFile = new File(parent, cls.getName() + ".dsld");
+        return dsldFile;
+    }
+ 
+    private void writeFile(File gdslFile, String content) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(gdslFile));
+        try {
+            writer.write(content);
+        }
+        finally {
+            writer.close();
         }
     }
 

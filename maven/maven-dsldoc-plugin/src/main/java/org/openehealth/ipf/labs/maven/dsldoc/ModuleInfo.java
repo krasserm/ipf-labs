@@ -62,12 +62,25 @@ public class ModuleInfo {
     }
 
     /**
-     * @return the GDSL for this section.
+     * @return the GDSL (Idea) for this section.
      */
     public String toStringGDSL() {
         StringBuilder str = new StringBuilder();
         for (SectionInfo sectionEntry : sections) {
             str.append(sectionEntry.toStringGDSL());
+        }
+        str.append("\r\n");
+        return str.toString();
+    }
+    
+    
+    /**
+     * @return the DSLD (Eclipse) for this section.
+     */
+    public String toStringDSLD() {
+        StringBuilder str = new StringBuilder();
+        for (SectionInfo sectionEntry : sections) {
+            str.append(sectionEntry.toStringDSLD());
         }
         str.append("\r\n");
         return str.toString();

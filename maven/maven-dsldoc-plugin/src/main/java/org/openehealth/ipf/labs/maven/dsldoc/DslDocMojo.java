@@ -18,21 +18,21 @@ package org.openehealth.ipf.labs.maven.dsldoc;
 import org.apache.maven.plugin.MojoExecutionException;
 
 /**
- * Goal which builds the GDSL for IntelliJ IDEA.
+ * Goal which builds DSL descriptors for IntelliJ IDEA and Eclipse.
  *
- * @goal gdsl
+ * @goal dsldoc
  */
-public class GdslMojo extends AbstractDocMojo {
+public class DslDocMojo extends AbstractDocMojo {
     public void execute() throws MojoExecutionException {
         Types types = initTypes();
         enableProxy();
 
         try {
-            getLog().info("Building GDSL support for IDEA");
+            getLog().info("Building DSL metadata for Eclipse and IDEA");
             if (sourceTrees == null || sourceTrees.length == 0) {
                 sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }
-            new Extractor(types).processGDSL(project.getName(), outputDirectory, sourceTrees, getLog());
+            new Extractor(types).processDSLs(project.getName(), outputDirectory, sourceTrees, getLog());
         }
         catch (Exception e) {
             throw new RuntimeException(e);

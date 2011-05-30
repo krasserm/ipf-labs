@@ -83,7 +83,25 @@ public class SectionInfo {
         }
         return str.toString();
    }
-
+    
+    
+    /**
+     * @return the GDSL for this section.
+     */
+    public String toStringDSLD() {
+        StringBuilder str = new StringBuilder();
+        if (!methods.isEmpty()) {
+            
+            str.append("currentType(subType(");
+            str.append("'").append(name).append("'");
+            str.append(")).accept {\r\n");
+            for (MethodInfo methodInfo : methods) {
+                str.append("    " +  methodInfo.toStringDSLD()).append("\r\n");
+            }
+            str.append("}\r\n");
+        }
+        return str.toString();
+   }
     /**
      * Adds a method to this section.
      * @param methodInfo

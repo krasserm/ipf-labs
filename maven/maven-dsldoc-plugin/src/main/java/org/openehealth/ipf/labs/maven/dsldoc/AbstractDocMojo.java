@@ -15,14 +15,14 @@
  */
 package org.openehealth.ipf.labs.maven.dsldoc;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.Proxy;
 import org.apache.maven.settings.Settings;
-
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Base class for Mojos.
@@ -72,13 +72,19 @@ public abstract class AbstractDocMojo extends AbstractMojo {
      * @required
      */
     protected Map<String, String> links;
-
+    
     /**
      * @parameter default-value="${project}"
      * @required
      * @readonly
      */
     protected MavenProject project;
+    
+    /**
+     * @parameter default-value="${project.name}"
+     * @readonly
+     */
+    protected String projectName;
 
     /**
      * Enables a proxy server for http access if it is configured within the Maven settings.
@@ -123,7 +129,7 @@ public abstract class AbstractDocMojo extends AbstractMojo {
         }
         return new Types(apiLinks);
     }
-
+    
     private boolean defined(String value) {
         return value != null && !value.isEmpty();
     }

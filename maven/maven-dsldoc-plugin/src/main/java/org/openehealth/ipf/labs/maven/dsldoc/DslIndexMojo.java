@@ -38,7 +38,7 @@ public class DslIndexMojo extends AbstractDocMojo {
             new Extractor(types).processDSLIndex(project.getName(), buildDirectory, sourceTrees, getLog());
         }
         catch (Exception e) {
-            throw new MojoExecutionException("Error creating IPF DSL Documentation", e);
+            throw new MojoExecutionException("Error creating DSL Documentation", e);
         }
     }
 }

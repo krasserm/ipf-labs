@@ -15,6 +15,8 @@
  */
 package org.openehealth.ipf.labs.maven.dsldoc;
 
+import groovy.lang.GroovyClassLoader;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -39,6 +41,7 @@ public class DslDocBuilder extends JavaDocBuilder {
 
 	public DslDocBuilder(Log log) {
 		this.log = log;
+		this.getClassLibrary().addClassLoader(new GroovyClassLoader());
 	}
 
 	/**
