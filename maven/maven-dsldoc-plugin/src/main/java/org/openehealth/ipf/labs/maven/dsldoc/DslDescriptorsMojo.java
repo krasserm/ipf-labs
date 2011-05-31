@@ -30,7 +30,7 @@ public class DslDescriptorsMojo extends AbstractDocMojo {
         enableProxy();
 
         try {
-            getLog().info("Building DSL metadata for Eclipse and IDEA");
+            getLog().info("Building DSL metadata for Eclipse and IDEA for files with extensions " + descriptorFileExtensions);
             if (sourceTrees == null || sourceTrees.length == 0) {
                 sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }

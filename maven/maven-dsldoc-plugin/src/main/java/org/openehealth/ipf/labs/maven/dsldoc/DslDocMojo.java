@@ -31,7 +31,7 @@ public class DslDocMojo extends AbstractDocMojo {
         Types types = initTypes();
 
         try {
-            getLog().info("Building DSL HTML");
+            getLog().info("Building DSL HTML for files with extensions " + descriptorFileExtensions);
             if (sourceTrees == null || sourceTrees.length == 0) {
                 sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }

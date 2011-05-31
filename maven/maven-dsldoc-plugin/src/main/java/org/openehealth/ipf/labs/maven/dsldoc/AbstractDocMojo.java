@@ -50,7 +50,7 @@ public abstract class AbstractDocMojo extends AbstractMojo {
      * These files must have java-syntax package and import declarations (';' at the end) 
      * in order to be parsable   
      * 
-     * @parameter default-value="Expression.groovy,Expression.java"
+     * @parameter default-value="Extension.groovy,Extension.java"
      */
     protected String descriptorFileExtensions;
 
