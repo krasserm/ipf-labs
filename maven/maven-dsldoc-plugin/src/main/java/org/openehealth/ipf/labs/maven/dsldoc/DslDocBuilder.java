@@ -32,6 +32,8 @@ import com.thoughtworks.qdox.parser.ParseException;
  * Parses *Extension.groovy and *Extension.java files. The groovy files that can not be parsed are
  * ignored
  * 
+ * @author Jens Riemschneider
+ * @author Mitko Kolev
  */
 public class DslDocBuilder extends JavaDocBuilder {
 

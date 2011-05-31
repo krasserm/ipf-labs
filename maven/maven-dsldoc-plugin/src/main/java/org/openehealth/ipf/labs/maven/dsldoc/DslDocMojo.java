@@ -16,6 +16,7 @@
 package org.openehealth.ipf.labs.maven.dsldoc;
 
 import org.apache.maven.plugin.MojoExecutionException;
+import org.openehealth.ipf.labs.maven.dsldoc.domain.Types;
 
 /**
  * Goal which builds DSL descriptors for IntelliJ IDEA and Eclipse.
@@ -23,6 +24,9 @@ import org.apache.maven.plugin.MojoExecutionException;
  * @goal dsldoc
  */
 public class DslDocMojo extends AbstractDocMojo {
+    
+ 
+    
     public void execute() throws MojoExecutionException {
         Types types = initTypes();
         enableProxy();
@@ -32,7 +36,7 @@ public class DslDocMojo extends AbstractDocMojo {
             if (sourceTrees == null || sourceTrees.length == 0) {
                 sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }
-            new Extractor(types).processDSLs(project.getName(), outputDirectory, sourceTrees, getLog());
+            new Extractor(types).generateDSLDescriptors(project.getName(), outputDirectory, sourceTrees, getLog());
         }
         catch (Exception e) {
             throw new RuntimeException(e);

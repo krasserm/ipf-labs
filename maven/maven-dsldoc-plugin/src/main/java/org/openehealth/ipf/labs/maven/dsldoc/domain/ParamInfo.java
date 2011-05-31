@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openehealth.ipf.labs.maven.dsldoc;
+package org.openehealth.ipf.labs.maven.dsldoc.domain;
 
 /**
  * Information about a documented DSL method parameter or return value.
+ * 
+ * @author Jens Riemschneider
  */
 public class ParamInfo {
     private final String name;

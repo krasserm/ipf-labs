@@ -16,6 +16,7 @@
 package org.openehealth.ipf.labs.maven.dsldoc;
 
 import org.apache.maven.plugin.MojoExecutionException;
+import org.openehealth.ipf.labs.maven.dsldoc.domain.Types;
 
 import java.util.Arrays;
 
@@ -30,15 +31,15 @@ public class DslIndexMojo extends AbstractDocMojo {
         Types types = initTypes();
 
         try {
-            getLog().info("Building DSL Index");
+            getLog().info("Building DSL HTML");
             if (sourceTrees == null || sourceTrees.length == 0) {
                 sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }
             getLog().info("Using source trees: " + Arrays.toString(sourceTrees));
-            new Extractor(types).processDSLIndex(project.getName(), buildDirectory, sourceTrees, getLog());
+            new Extractor(types).generateDSLSite(project.getName(), buildDirectory, sourceTrees, getLog());
         }
         catch (Exception e) {
-            throw new MojoExecutionException("Error creating DSL Documentation", e);
+            throw new MojoExecutionException("Error creating DSL HTML Documentation", e);
         }
     }
 }

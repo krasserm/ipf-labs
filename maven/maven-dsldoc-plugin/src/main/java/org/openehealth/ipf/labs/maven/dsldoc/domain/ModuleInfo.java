@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openehealth.ipf.labs.maven.dsldoc;
+package org.openehealth.ipf.labs.maven.dsldoc.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Information about a module in the documentation.
+ * 
+ * @author Jens Riemschneider
  */
 public class ModuleInfo {
     private final String name;
@@ -43,47 +45,6 @@ public class ModuleInfo {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * @return the DSL index for this section.
-     */
-    public String toStringDSLIndex() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("<h2><a name=\"")
-                .append(name)
-                .append("\"></a>DSL Extensions provided by <tt>")
-                .append(name)
-                .append("</tt></h2>");
-        for (SectionInfo sectionEntry : sections) {
-            builder.append(sectionEntry.toStringDSLIndex());
-        }
-        return builder.toString();
-    }
-
-    /**
-     * @return the GDSL (Idea) for this section.
-     */
-    public String toStringGDSL() {
-        StringBuilder str = new StringBuilder();
-        for (SectionInfo sectionEntry : sections) {
-            str.append(sectionEntry.toStringGDSL());
-        }
-        str.append("\r\n");
-        return str.toString();
-    }
-    
-    
-    /**
-     * @return the DSLD (Eclipse) for this section.
-     */
-    public String toStringDSLD() {
-        StringBuilder str = new StringBuilder();
-        for (SectionInfo sectionEntry : sections) {
-            str.append(sectionEntry.toStringDSLD());
-        }
-        str.append("\r\n");
-        return str.toString();
     }
 
     /**
@@ -117,5 +78,13 @@ public class ModuleInfo {
             }
         }
         return null;
+    }
+
+    public List<SectionInfo> getSections() {
+        return sections;
+    }
+
+    public Types getTypes() {
+        return types;
     }
 }

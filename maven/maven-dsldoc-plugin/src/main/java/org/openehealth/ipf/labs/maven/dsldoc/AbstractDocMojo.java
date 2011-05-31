@@ -23,9 +23,12 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.Proxy;
 import org.apache.maven.settings.Settings;
+import org.openehealth.ipf.labs.maven.dsldoc.domain.Types;
 
 /**
  * Base class for Mojos.
+ * 
+ * @author Jens Riemschneider
  */
 public abstract class AbstractDocMojo extends AbstractMojo {
     /**

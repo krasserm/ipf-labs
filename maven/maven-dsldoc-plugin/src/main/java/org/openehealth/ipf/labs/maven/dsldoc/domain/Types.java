@@ -13,12 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openehealth.ipf.labs.maven.dsldoc;
+package org.openehealth.ipf.labs.maven.dsldoc.domain;
 
 import java.util.Map;
 
 /**
  * Type information to resolve API links.
+ * 
+ * @author Jens Riemschneider
  */
 public class Types {
     private final Map<String, String> apiLinks;
