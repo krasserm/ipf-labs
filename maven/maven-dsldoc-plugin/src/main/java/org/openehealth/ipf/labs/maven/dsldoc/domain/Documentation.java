@@ -29,8 +29,13 @@ import com.thoughtworks.qdox.model.JavaParameter;
  * @author Jens Riemschneider
  */
 public class Documentation {
+    public static final String DSL_DOC_TAG = "DSLDoc";
+    public static final String DSL_TAG = "DSL";
+    
     private static final String LINK = "{@link ";
     private static final String CODE = "{@code ";
+    
+    
     
     private final List<ModuleInfo> modules = new ArrayList<ModuleInfo>();
     private final Types types;
@@ -86,16 +91,16 @@ public class Documentation {
     }
     
     public void registerMethod(String module, JavaClass cls, JavaMethod method) {
-        if (method.getTagByName("ipfdoc") != null) {
+        if (method.getTagByName(DSL_DOC_TAG) != null) {
             validate(method);
 
             String section = getSection(method);
             List<ParamInfo> paramInfos = getParams(method);
             ParamInfo returnParam = getReturns(method);
-            String ipfDocLink = getIpfDocLink(method);
+            String dslDocLink = getDslDocLink(method);
             
             String comment = javaDoc2Html(method.getComment(), cls);
-            MethodInfo methodInfo = new MethodInfo(method.getName(), comment, paramInfos, returnParam, ipfDocLink);
+            MethodInfo methodInfo = new MethodInfo(method.getName(), comment, paramInfos, returnParam, dslDocLink);
             this.addMethod(module, section, methodInfo);
         }
     }
@@ -109,8 +114,8 @@ public class Documentation {
             throw new AssertionError(method + " must have a comment");
         }
         
-        if (getIpfDocLink(method) == null || getIpfDocLink(method).isEmpty()) {
-            throw new AssertionError(method + " must define a link to the IPF documentation via @ipfdoc");
+        if (getDslDocLink(method) == null || getDslDocLink(method).isEmpty()) {
+            throw new AssertionError(method + " must define a link to the DSL documentation via @" + DSL_DOC_TAG);
         }
         
         if (method.isStatic() && method.getParameters().length == 0) {
@@ -122,8 +127,8 @@ public class Documentation {
         }
     }
 
-    private String getIpfDocLink(JavaMethod method) {
-        return getTagValue(method, "ipfdoc");
+    private String getDslDocLink(JavaMethod method) {
+        return getTagValue(method, DSL_DOC_TAG);
     }
 
     private String getTagValue(JavaMethod method, String tagName) {
@@ -170,7 +175,7 @@ public class Documentation {
         if (superType == null) {
             return Collections.emptyList();
         }
-        if (superType.getTagByName("dsl") != null) {
+        if (superType.getTagByName(DSL_TAG) != null) {
             return Collections.singletonList(superType.getFullyQualifiedName());
         }
         return getTaggedSuperTypes(superType);

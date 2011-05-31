@@ -29,61 +29,67 @@ import com.thoughtworks.qdox.directorywalker.Filter;
 import com.thoughtworks.qdox.parser.ParseException;
 
 /**
- * Parses *Extension.groovy and *Extension.java files. The groovy files that can not be parsed are
- * ignored
+ * Parses *Extension.groovy and *Extension.java files. The groovy files that can
+ * not be parsed are ignored
  * 
  * @author Jens Riemschneider
  * @author Mitko Kolev
  */
 public class DslDocBuilder extends JavaDocBuilder {
 
-	private static final long serialVersionUID = 5144456919412670775L;
+    private static final long serialVersionUID = 5144456919412670775L;
 
-	private final Log log;
+    private final Log log;
+    private final String[] fileExtensionsToParse;
 
-	public DslDocBuilder(Log log) {
-		this.log = log;
-		this.getClassLibrary().addClassLoader(new GroovyClassLoader());
-	}
+    public DslDocBuilder(String csvFileExtensionsToParse, Log log) {
+        this.fileExtensionsToParse = csvFileExtensionsToParse.split(",");
+        this.log = log;
+        this.getClassLibrary().addClassLoader(new GroovyClassLoader());
+    }
 
-	/**
-	 * Add all files in a directory (and subdirs, recursively).
-	 * 
-	 * If a file cannot be read, errorHandler will be notified.
-	 */
-	public void addSourceTree(File file, final FileVisitor errorHandler) {
-		DirectoryScanner scanner = new DirectoryScanner(file);
+    /**
+     * Add all files in a directory (and subdirs, recursively).
+     * 
+     * If a file cannot be read, errorHandler will be notified.
+     */
+    public void addSourceTree(File file, final FileVisitor errorHandler) {
+        DirectoryScanner scanner = new DirectoryScanner(file);
 
-		scanner.addFilter(new DSLExtensionSuffixFilter());
+        scanner.addFilter(new DSLExtensionSuffixFilter());
 
-		scanner.scan(new FileVisitor() {
-			public void visitFile(File currentFile) {
-				try {
-					addSource(currentFile);
-				} catch (IOException e) {
-					errorHandler.visitFile(currentFile);
-				} catch (ParseException e) {
-					if (currentFile.getName().endsWith(".groovy")) {
-						log.error("Unable to parse extension file " + currentFile.getName());
-						log.debug(e);
-					} else {
-						throw e;
-					}
-				}
-			}
-		});
-	}
+        scanner.scan(new FileVisitor() {
+            public void visitFile(File currentFile) {
+                try {
+                    addSource(currentFile);
+                } catch (IOException e) {
+                    errorHandler.visitFile(currentFile);
+                } catch (ParseException e) {
+                    if (currentFile.getName().endsWith(".groovy")) {
+                        log.error("Unable to parse extension file "
+                                + currentFile.getName() + " : "
+                                + e.getMessage() + " line:" + e.getLine()
+                                + " column:" + e.getColumn());
+                        log.debug(e);
+                    } else {
+                        throw e;
+                    }
+                }
+            }
+        });
+    }
 
-	private class DSLExtensionSuffixFilter implements Filter {
-		@Override
-		public boolean filter(File file) {
-			String name = file.getName();
-			if (name.endsWith("Extension.java") || name.endsWith("Extension.groovy")) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+    private class DSLExtensionSuffixFilter implements Filter {
+        @Override
+        public boolean filter(File file) {
+            String name = file.getName();
+            for (String extension : fileExtensionsToParse) {
+                if (name.endsWith(extension)) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
-	}
+    }
 }

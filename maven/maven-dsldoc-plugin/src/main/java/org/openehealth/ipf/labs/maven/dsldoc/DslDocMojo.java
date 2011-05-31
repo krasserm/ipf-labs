@@ -18,28 +18,28 @@ package org.openehealth.ipf.labs.maven.dsldoc;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.openehealth.ipf.labs.maven.dsldoc.domain.Types;
 
+import java.util.Arrays;
+
 /**
- * Goal which builds DSL descriptors for IntelliJ IDEA and Eclipse.
+ * Goal which builds a DSL index for a single module.
  *
  * @goal dsldoc
  */
 public class DslDocMojo extends AbstractDocMojo {
-    
- 
-    
     public void execute() throws MojoExecutionException {
-        Types types = initTypes();
         enableProxy();
+        Types types = initTypes();
 
         try {
-            getLog().info("Building DSL metadata for Eclipse and IDEA");
+            getLog().info("Building DSL HTML");
             if (sourceTrees == null || sourceTrees.length == 0) {
                 sourceTrees = new String[] { javaDSLSourceDirectory, groovyDSLSourceDirectory };
             }
-            new Extractor(types).generateDSLDescriptors(project.getName(), outputDirectory, sourceTrees, getLog());
+            getLog().info("Using source trees: " + Arrays.toString(sourceTrees));
+            new Extractor(types, descriptorFileExtensions).generateDSLHTMLFragment(project.getName(), buildDirectory, sourceTrees, getLog());
         }
         catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new MojoExecutionException("Error creating DSL HTML Documentation", e);
         }
     }
 }

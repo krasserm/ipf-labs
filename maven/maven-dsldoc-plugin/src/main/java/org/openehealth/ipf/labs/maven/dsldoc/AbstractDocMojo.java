@@ -44,6 +44,15 @@ public abstract class AbstractDocMojo extends AbstractMojo {
      * @parameter expression="${source.trees}"
      */
     protected String[] sourceTrees;
+    
+    /**
+     * Comma separated values of the file the extensions, that should be parsed. 
+     * These files must have java-syntax package and import declarations (';' at the end) 
+     * in order to be parsable   
+     * 
+     * @parameter default-value="Expression.groovy,Expression.java"
+     */
+    protected String descriptorFileExtensions;
 
     /**
      * @parameter default-value="${project.build.sourceDirectory}"

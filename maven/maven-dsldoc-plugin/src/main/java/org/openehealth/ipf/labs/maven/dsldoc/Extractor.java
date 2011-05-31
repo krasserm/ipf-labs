@@ -48,15 +48,17 @@ public class Extractor {
     private final HTMLRenderer html;
     private final EclipseRenderer eclipse;
     private final IDEARenderer idea;
+    private final String csvDescriptorFileExtensions;
 
     /**
-     * Constructs the extractor.
+     * Constructs an Extractor instance.
      * 
-     * @param types
-     *            the type info object that contains api links.
+     * @param types the type info object that contains api links.
+     * @param descriptorFileExtensions
      */
-    public Extractor(Types types) {
+    public Extractor(Types types, String descriptorFileExtensions) {
         this.types = types;
+        this.csvDescriptorFileExtensions = descriptorFileExtensions;
         this.html = new HTMLRenderer();
         this.idea = new IDEARenderer();
         this.eclipse = new EclipseRenderer();
@@ -91,7 +93,7 @@ public class Extractor {
         log.info("Processing sources");
         for (JavaSource src : builder.getSources()) {
             for (JavaClass cls : src.getClasses()) {
-                if (null != cls.getTagByName("dsl")) {
+                if (null != cls.getTagByName(Documentation.DSL_TAG)) {
                     for (JavaMethod method : cls.getMethods()) {
                         doc.registerMethod(module, cls, method);
                     }
@@ -103,7 +105,8 @@ public class Extractor {
     }
 
     /**
-     * Generate a DSL HTML index for the given module.
+     * Generate a DSL HTML fragment for the given module. The fragmrents are merged on 
+     * reporting phase by {@link DslIndexReport}
      * 
      * @param module
      *            the name of the module to generate the report for.
@@ -116,7 +119,7 @@ public class Extractor {
      * @throws IOException
      *             if reading or writing a file failed.
      */
-    public void generateDSLSite(String module, File outputDirectory,
+    public void generateDSLHTMLFragment(String module, File outputDirectory,
             String[] sourceDirs, Log log) throws IOException {
         Documentation doc = new Documentation(types);
         DslDocBuilder builder = addSources(sourceDirs, log);
@@ -138,7 +141,7 @@ public class Extractor {
     }
 
     private DslDocBuilder addSources(String[] files, Log log) {
-        DslDocBuilder builder = new DslDocBuilder(log);
+        DslDocBuilder builder = new DslDocBuilder(csvDescriptorFileExtensions, log);
         for (String filename : files) {
             File file = new File(filename);
             if (file.exists()) {
