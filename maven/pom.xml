@@ -16,9 +16,9 @@
     </modules>
 
     <scm>
-        <connection>cm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</connection>
-        <developerConnection>scm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</developerConnection>
-        <url>scm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</url>
+        <connection>scm:git:git@github.com:krasserm/ipf-labs.git</connection>
+        <developerConnection>scm:git:git@github.com:krasserm/ipf-labs.git</developerConnection>
+        <url>scm:git:git@github.com:krasserm/ipf-labs.git</url>
     </scm>
 
     <licenses>
