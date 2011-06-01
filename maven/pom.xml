@@ -5,7 +5,7 @@
     <artifactId>maven</artifactId>
     <name>maven</name>
     <packaging>pom</packaging>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.4-SNAPSHOT</version>
 
     <properties>
         <release-plugin-version>2.0-beta-9</release-plugin-version>
@@ -16,9 +16,9 @@
     </modules>
 
     <scm>
-        <connection>cm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</connection>
-        <developerConnection>scm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</developerConnection>
-        <url>scm:svn:https://gforge.openehealth.org/svn/ipf-tools/maven/trunk/maven</url>
+        <connection>scm:git:git@github.com:krasserm/ipf-labs.git</connection>
+        <developerConnection>scm:git:git@github.com:krasserm/ipf-labs.git</developerConnection>
+        <url>scm:git:git@github.com:krasserm/ipf-labs.git</url>
     </scm>
 
     <licenses>
