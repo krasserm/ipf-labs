@@ -12,6 +12,7 @@
     </properties>
 
     <modules>
+        <module>maven-confluence-export-plugin</module>
         <module>maven-dsldoc-plugin</module>
     </modules>
 
