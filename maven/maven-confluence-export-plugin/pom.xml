@@ -127,15 +127,15 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>axistools-maven-plugin</artifactId>
                <version>${axistools-version}</version>
                 <configuration>
                     <urls>
                         <url>file:${basedir}/src/main/resources/wsdl/confluenceservice-v1.wsdl</url>
-                        <!--url>file:${basedir}/src/main/resources/wsdl/confluenceservice-v2.wsdl</url-->
-                        <!--url>file:${basedir}/src/main/resources/wsdl/pdfexport.wsdl</url-->
+                        <url>file:${basedir}/src/main/resources/wsdl/confluenceservice-v2.wsdl</url>
+                        <url>file:${basedir}/src/main/resources/wsdl/pdfexport.wsdl</url>
                     </urls>
                     <outputDirectory>${basedir}/src/main/generated</outputDirectory>
                     <packageSpace>org.openehealth.ipf.labs.maven.confluence.export.html.v1</packageSpace>
@@ -162,7 +162,7 @@
                         <version>${mail-version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
+            </plugin-->
         </plugins>
     </build>
 </project>
