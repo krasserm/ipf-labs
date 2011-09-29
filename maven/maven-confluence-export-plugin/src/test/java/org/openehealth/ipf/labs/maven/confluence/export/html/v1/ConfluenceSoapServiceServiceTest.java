@@ -1,4 +1,4 @@
-package org.openehealth.ipf.labs.maven.confluence.export.service.impl;
+package org.openehealth.ipf.labs.maven.confluence.export.html.v1;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -19,7 +19,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException;
 
 import static org.junit.Assert.*;
 

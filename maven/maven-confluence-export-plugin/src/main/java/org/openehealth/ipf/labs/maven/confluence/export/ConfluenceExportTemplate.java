@@ -30,8 +30,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.maven.plugin.logging.Log;
-import org.openehealth.ipf.labs.maven.confluence.export.stubs.AuthenticationFailedException;
-import org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException;
+import org.openehealth.ipf.labs.maven.confluence.export.html.v1.AuthenticationFailedException;
+import org.openehealth.ipf.labs.maven.confluence.export.html.v1.RemoteException;
 
 /**
  * @author Mitko Kolev

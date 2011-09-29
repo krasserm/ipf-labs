@@ -25,8 +25,8 @@ import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.openehealth.ipf.labs.maven.confluence.export.stubs.AuthenticationFailedException;
-import org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException;
+import org.openehealth.ipf.labs.maven.confluence.export.html.v1.AuthenticationFailedException;
+import org.openehealth.ipf.labs.maven.confluence.export.html.v1.RemoteException;
 
 /**
  * Confluence export Mojo.
