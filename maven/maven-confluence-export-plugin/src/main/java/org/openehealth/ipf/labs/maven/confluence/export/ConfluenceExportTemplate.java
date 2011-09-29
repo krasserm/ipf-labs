@@ -21,17 +21,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.rmi.RemoteException;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.maven.plugin.logging.Log;
-import org.openehealth.ipf.labs.maven.confluence.export.html.v1.AuthenticationFailedException;
-import org.openehealth.ipf.labs.maven.confluence.export.html.v1.RemoteException;
 
 /**
  * @author Mitko Kolev
@@ -39,85 +41,91 @@ import org.openehealth.ipf.labs.maven.confluence.export.html.v1.RemoteException;
  */
 public abstract class ConfluenceExportTemplate {
 
-    public HttpResponse executeSessionIdRequest(DefaultHttpClient client, 
-                                          URL url,
-                                          String user,
-                                          String password) throws Exception {
-        HttpPost sessionIdRequest = new HttpPost(url.toExternalForm() + "/login.action");
+    protected final URL confluenceBaseUrl;
+    protected final String user;
+    protected final String password;
+    protected final Log log;
 
-        StringBuilder content = new StringBuilder();
-        content.append("os_username=").append(user);
-        content.append("&os_password=").append(password);
-        content.append("&login=Log+In&os_destination=");
-
-        String contentType = "application/x-www-form-urlencoded";
-        String encoding = "UTF-8";
-        sessionIdRequest.setEntity(new StringEntity(content.toString(), contentType, encoding));
-        return client.execute(sessionIdRequest);
+    public ConfluenceExportTemplate(URL confluenceBaseUrl, String user, String password, Log log) {
+        this.confluenceBaseUrl = confluenceBaseUrl;
+        this.user = user;
+        this.password = password;
+        this.log = log;
     }
 
-    /**
-     * Extracts the JSESSIONID cookie from the HttpMethod
-     * 
-     * @param client
-     * @return the value of the JSESSIONID cookie
-     */
-    public String extractSessionId(DefaultHttpClient client) {
-        for (org.apache.http.cookie.Cookie cookie : client.getCookieStore().getCookies()) {
-            if (cookie.getName().equals("JSESSIONID")) {
-                return cookie.getValue();
+    public void export(DefaultHttpClient httpClient,
+                       List<ExportSpace> spaces,
+                       boolean isVersion30AndAbove,
+                       File outputFolder) {
+        try {
+            String sessionId = login(httpClient);
+            for (ExportSpace space : spaces) {
+                String exportedUrl = export(space, isVersion30AndAbove);
+                store(exportedUrl,
+                      httpClient,
+                      sessionId,
+                      new File(outputFolder, space.getOutputFileName()));
+            }
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        } catch (IOException ioe){
+            throw new RuntimeException(ioe);
+        }
+    }
+
+    protected abstract String  export(ExportSpace space, boolean isVersion30AndAbove) throws java.rmi.RemoteException;
+
+    protected String login(DefaultHttpClient client) throws IOException {
+        HttpPost sessionIdRequest = new HttpPost(confluenceBaseUrl.toExternalForm()
+                + "/login.action");
+        HttpResponse response = null;
+        try {
+            log.debug("Executing login with HTTP client");
+            StringEntity loginRequest = buildLoginRequestEntity();
+            sessionIdRequest.setEntity(loginRequest);
+            response = client.execute(sessionIdRequest);
+            log.debug("Login finished with status code " + response.getStatusLine().getStatusCode());
+        } catch (UnsupportedEncodingException uee) {
+            throw new RuntimeException(uee);
+        } catch (ClientProtocolException cpe) {
+            throw new RuntimeException(cpe);
+        } finally{
+            if (response != null){
+                IOUtils.closeQuietly(response.getEntity().getContent());
             }
         }
-        String msg = "No JSESSIONID found in Set-Cookie response header.";
-        throw new IllegalStateException(msg);
+        return extractSessionId(client);
     }
 
-    public StringEntity buildAuthenticationRequestEntity(String user, String password) throws Exception {
-        StringBuilder content = new StringBuilder();
-        content.append("os_username=").append(user);
-        content.append("&os_password=").append(password);
-        content.append("&login=Log+In&os_destination=");
-        String contentType = "application/x-www-form-urlencoded";
-        String encoding = "UTF-8";
-        return new StringEntity(content.toString(), contentType, encoding);
-    }
-
-    public abstract void exportSpace(DefaultHttpClient client, URL url, String user, String passwrod, Space space, Log log) throws AuthenticationFailedException, RemoteException, java.rmi.RemoteException;
-    
-    
-    
-    public void downloadExportedFile(DefaultHttpClient client, String sessionId, String exportedSpaceUri) {
-        HttpGet get = new HttpGet(exportedSpaceUri);
+    public void store(String exportedSpaceUrl,
+                      DefaultHttpClient client,
+                      String sessionId,
+                      File targetFile) {
+        HttpGet get = new HttpGet(exportedSpaceUrl);
         get.addHeader("Cookie", "confluence.browse.space.cookie=space-pages; "
                 + "confluence.list.pages.cookie=list-content-tree; " + "JSESSIONID=" + sessionId);
         get.addHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
         get.addHeader("Accept-Encoding", "gzip, deflate");
 
-        HttpResponse httpResponse = null;
+        InputStream content = null;
         try {
-            httpResponse = client.execute(get);
-            System.out.println(httpResponse.getStatusLine().getStatusCode());
-            downloadStreamTo(httpResponse.getEntity().getContent(), "C:", "output.zip");
-            System.out.println(exportedSpaceUri);
+            log.info("Retreiving " + exportedSpaceUrl);
+            HttpResponse httpResponse = client.execute(get);
+            log.info("Writing " + targetFile.getAbsolutePath());
+            content = httpResponse.getEntity().getContent();
+            download(content, targetFile);
+            log.info("Finished " + targetFile.getName());
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
-            // Release the connection.
-            try {
-                if (httpResponse != null) {
-                    httpResponse.getEntity().getContent().close();
-                }
-            } catch (Exception e) {
-            }
+            IOUtils.closeQuietly(content);
         }
     }
 
-    public void downloadStreamTo(InputStream zipFileInputStream,
-                                 String destinationDir,
-                                 String localFileName) {
-        File targetFile = new File(destinationDir + File.separator + localFileName);
+    private void download(InputStream content, File targetFile) {
         if (!targetFile.exists()) {
             try {
+                targetFile.setWritable(true);
                 boolean created = targetFile.createNewFile();
                 if (!created) {
                     throw new IllegalStateException("Unable to create file "
@@ -128,19 +136,41 @@ public abstract class ConfluenceExportTemplate {
             }
         }
         OutputStream targetStream = null;
-
+        log.debug("Downloading the content to " + targetFile.getAbsolutePath());
         try {
-            targetStream = new BufferedOutputStream(new FileOutputStream(targetFile));
-            IOUtils.copyLarge(zipFileInputStream, targetStream);
+            targetStream = new BufferedOutputStream(new FileOutputStream(targetFile), 1024 * 4 );
+            IOUtils.copy(content, targetStream);
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);
         } finally {
             IOUtils.closeQuietly(targetStream);
-            IOUtils.closeQuietly(zipFileInputStream);
         }
-
     }
 
-    
-   
+    /**
+     * Extracts the JSESSIONID cookie from the HttpMethod
+     * 
+     * @param client
+     * @return the value of the JSESSIONID cookie
+     */
+    private String extractSessionId(DefaultHttpClient client) {
+        for (org.apache.http.cookie.Cookie cookie : client.getCookieStore().getCookies()) {
+            if (cookie.getName().equals("JSESSIONID")) {
+                return cookie.getValue();
+            }
+        }
+        String msg = "No JSESSIONID found in Set-Cookie response header.";
+        throw new IllegalStateException(msg);
+    }
+
+    private StringEntity buildLoginRequestEntity() throws UnsupportedEncodingException {
+        StringBuilder content = new StringBuilder();
+        content.append("os_username=").append(user);
+        content.append("&os_password=").append(password);
+        content.append("&login=Log+In&os_destination=");
+        String contentType = "application/x-www-form-urlencoded";
+        String encoding = "UTF-8";
+        return new StringEntity(content.toString(), contentType, encoding);
+    }
+
 }

@@ -17,6 +17,11 @@ package org.openehealth.ipf.labs.maven.confluence.export;
 
 import java.io.File;
 
+import org.apache.http.HttpHost;
+import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.Proxy;
@@ -28,7 +33,8 @@ import org.apache.maven.settings.Settings;
  */
 public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
 
-
+    protected DefaultHttpClient client = new DefaultHttpClient();
+    
     /**
      * The Maven Settings.
      * @parameter default-value="${settings}"
@@ -64,20 +70,13 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
      */
     protected String projectName;
  
-    /**
-     * @parameter 
-     */
-    protected Space export;
+
  
     
     /**
      * Enables a proxy server for http access if it is configured within the Maven settings.
      */
-    protected void enableProxy() {
-        if (hasProxy()) {
-            return;
-        }
-
+    protected void enableAxisProxy() {
         Proxy activeProxy = settings.getActiveProxy();
         String protocol = activeProxy.getProtocol().isEmpty() ? "" : activeProxy.getProtocol();
 
@@ -102,7 +101,22 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
         }
     }
 
-    protected boolean defined(String value) {
+    protected void configureHttpClientProxy() {
+        Proxy activeProxy = this.settings.getActiveProxy();
+        HttpHost proxy = new HttpHost(activeProxy.getHost(), activeProxy.getPort());
+
+        String proxyUserName = activeProxy.getUsername();
+        if (defined(proxyUserName)) {
+            String proxyPassword = activeProxy.getPassword();
+            client.getCredentialsProvider()
+                    .setCredentials(new AuthScope(proxy.getHostName(), proxy.getPort()),
+                                    new UsernamePasswordCredentials(proxyUserName, proxyPassword));
+        }
+        client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+    }
+    
+    
+    protected static boolean defined(String value) {
         return value != null && !value.isEmpty();
     }
 
@@ -112,6 +126,4 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
         }
         return true;
     }
-
-   
 }

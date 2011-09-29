@@ -30,8 +30,8 @@ import static org.junit.Assert.*;
 public class ConfluenceSoapServiceServiceTest {
 
     DefaultHttpClient client = new DefaultHttpClient();
-    String user = "test";
-    String password = "test";
+    String user = "mitko.kolev";
+    String password = "";
 
     private static final String CONFLUENCE_BASE_URL = "http://repo.openehealth.org/confluence";
 
@@ -123,7 +123,7 @@ public class ConfluenceSoapServiceServiceTest {
         assertNotNull("binding is null", binding);
 
         // Time out after a minute
-        binding.setTimeout(120000);
+        binding.setTimeout(500000);
 
         // Test operation
         try {

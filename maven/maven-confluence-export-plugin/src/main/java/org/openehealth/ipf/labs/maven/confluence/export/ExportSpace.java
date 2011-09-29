@@ -15,22 +15,37 @@
  */
 package org.openehealth.ipf.labs.maven.confluence.export;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * @author Mitko Kolev
  * 
  */
-public class Space {
+public class ExportSpace {
+    
+    public static final String PDF = "PDF";
+    public static final String HTML = "HTML";
+    public static final String XML = "XML";
+    
+    public static Map<String, String> EXPORT_TYPES = new HashMap<String, String>();
+    
+    static {
+        EXPORT_TYPES.put(PDF, "TYPE_PDF");
+        EXPORT_TYPES.put(HTML, "TYPE_HTML");
+        EXPORT_TYPES.put(XML, "TYPE_XML");
+    }
     /**
      * @parameter
      * @required
      */
-    private String name;
+    private String key;
     /**
      * @parameter
      * @required
      */
-    private String format;
+    private String type;
     /**
      * @parameter
      * @required
@@ -44,17 +59,17 @@ public class Space {
      */
     private int timeout;
     
-    public String getName() {
-        return name;
+    public String getKey() {
+        return key;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(String name) {
+        this.key = name;
     }
-    public String getFormat() {
-        return format;
+    public String getType() {
+        return type;
     }
-    public void setFormat(String format) {
-        this.format = format;
+    public void setType(String format) {
+        this.type = format;
     }
     public String getOutputFileName() {
         return outputFileName;
