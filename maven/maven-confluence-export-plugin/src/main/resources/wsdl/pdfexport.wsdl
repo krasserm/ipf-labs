@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="https://developer.atlassian.com/rpc/soap-axis/pdfexport" xmlns:intf="https://developer.atlassian.com/rpc/soap-axis/pdfexport" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://rpc.confluence.atlassian.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.2.1
+Built on Jun 14, 2005 (09:15:57 EDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://rpc.confluence.atlassian.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="RemoteException">
+    <sequence/>
+   </complexType>
+   <complexType name="AuthenticationFailedException">
+    <complexContent>
+     <extension base="tns1:RemoteException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="NotPermittedException">
+    <complexContent>
+     <extension base="tns1:RemoteException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="InvalidSessionException">
+    <complexContent>
+     <extension base="tns1:RemoteException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="AlreadyExistsException">
+    <complexContent>
+     <extension base="tns1:RemoteException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="VersionMismatchException">
+    <complexContent>
+     <extension base="tns1:RemoteException">
+      <sequence/>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part name="loginReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part name="in0" type="xsd:string"/>
+
+      <wsdl:part name="in1" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutResponse">
+
+      <wsdl:part name="logoutReturn" type="xsd:boolean"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="logoutRequest">
+
+      <wsdl:part name="in0" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="RemoteException">
+
+      <wsdl:part name="fault" type="tns1:RemoteException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="AuthenticationFailedException">
+
+      <wsdl:part name="fault" type="tns1:AuthenticationFailedException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportSpaceResponse">
+
+      <wsdl:part name="exportSpaceReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="exportSpaceRequest">
+
+      <wsdl:part name="in0" type="xsd:string"/>
+
+      <wsdl:part name="in1" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PdfExportRpc">
+
+      <wsdl:operation name="exportSpace" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:exportSpaceRequest" name="exportSpaceRequest"/>
+
+         <wsdl:output message="impl:exportSpaceResponse" name="exportSpaceResponse"/>
+
+         <wsdl:fault message="impl:RemoteException" name="RemoteException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login" parameterOrder="in0 in1">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest"/>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse"/>
+
+         <wsdl:fault message="impl:AuthenticationFailedException" name="AuthenticationFailedException"/>
+
+         <wsdl:fault message="impl:RemoteException" name="RemoteException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout" parameterOrder="in0">
+
+         <wsdl:input message="impl:logoutRequest" name="logoutRequest"/>
+
+         <wsdl:output message="impl:logoutResponse" name="logoutResponse"/>
+
+         <wsdl:fault message="impl:RemoteException" name="RemoteException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="pdfexportSoapBinding" type="impl:PdfExportRpc">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="exportSpace">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="exportSpaceRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://rpc.flyingpdf.extra.confluence.atlassian.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="exportSpaceResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="RemoteException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RemoteException" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://rpc.confluence.atlassian.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AuthenticationFailedException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="AuthenticationFailedException" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="RemoteException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RemoteException" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="logout">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="logoutRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://rpc.confluence.atlassian.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="logoutResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="RemoteException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="RemoteException" namespace="https://developer.atlassian.com/rpc/soap-axis/pdfexport" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PdfExportRpcService">
+
+      <wsdl:port binding="impl:pdfexportSoapBinding" name="pdfexport">
+
+         <wsdlsoap:address location="https://developer.atlassian.com/rpc/soap-axis/pdfexport"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

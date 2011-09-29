@@ -1,0 +1,89 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PdfExportRpcService WSDL service -->
+
+  <service name="pdfexport" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="https://developer.atlassian.com/rpc/soap-axis/pdfexport"/>
+      <parameter name="wsdlServiceElement" value="PdfExportRpcService"/>
+      <parameter name="schemaUnqualified" value="http://rpc.confluence.atlassian.com"/>
+      <parameter name="wsdlServicePort" value="pdfexport"/>
+      <parameter name="className" value="org.openehealth.ipf.labs.maven.confluence.export.pdf.PdfexportSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="PdfExportRpc"/>
+      <parameter name="typeMappingVersion" value="1.1"/>
+      <operation name="exportSpace" qname="operNS:exportSpace" xmlns:operNS="http://rpc.flyingpdf.extra.confluence.atlassian.com" returnQName="exportSpaceReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="https://developer.atlassian.com/rpc/soap-axis/pdfexport" class="org.openehealth.ipf.labs.maven.confluence.export.pdf.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="login" qname="operNS:login" xmlns:operNS="http://rpc.confluence.atlassian.com" returnQName="loginReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="AuthenticationFailedException" qname="fns:fault" xmlns:fns="https://developer.atlassian.com/rpc/soap-axis/pdfexport" class="org.openehealth.ipf.labs.maven.confluence.export.pdf.AuthenticationFailedException" type="tns:AuthenticationFailedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="https://developer.atlassian.com/rpc/soap-axis/pdfexport" class="org.openehealth.ipf.labs.maven.confluence.export.pdf.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="logout" qname="operNS:logout" xmlns:operNS="http://rpc.confluence.atlassian.com" returnQName="logoutReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="https://developer.atlassian.com/rpc/soap-axis/pdfexport" class="org.openehealth.ipf.labs.maven.confluence.export.pdf.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="exportSpace logout login"/>
+
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:InvalidSessionException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.pdf.InvalidSessionException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:VersionMismatchException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.pdf.VersionMismatchException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:RemoteException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.pdf.RemoteException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:AlreadyExistsException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.pdf.AlreadyExistsException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:AuthenticationFailedException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.pdf.AuthenticationFailedException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:NotPermittedException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.pdf.NotPermittedException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+  </service>
+</deployment>
