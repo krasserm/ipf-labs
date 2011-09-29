@@ -133,9 +133,9 @@
                <version>${axistools-version}</version>
                 <configuration>
                     <urls>
-                        <url>file:${basedir}/src/main/resources/wsdl/confluenceservice-v1.wsdl</url>
+                        <url>file:${basedir}/src/main/resources/wsdl/confluenceservice-v2.wsdl</url>
                     </urls>
-                    <outputDirectory>${basedir}/src/main/java</outputDirectory>
+                    <outputDirectory>${basedir}/src/main/generated</outputDirectory>
                     <packageSpace>org.openehealth.ipf.labs.maven.confluence.export.stubs</packageSpace>
                     <testCases>true</testCases>
                     <serverSide>true</serverSide>
@@ -148,6 +148,18 @@
                     </goals>
                   </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>javax.activation</groupId>
+                        <artifactId>activation</artifactId>
+                        <version>${activation-version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>javax.mail</groupId>
+                        <artifactId>mail</artifactId>
+                        <version>${mail-version}</version>
+                    </dependency>
+                </dependencies>
             </plugin-->
         </plugins>
     </build>

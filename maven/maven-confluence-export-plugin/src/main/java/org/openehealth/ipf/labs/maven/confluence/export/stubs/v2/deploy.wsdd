@@ -1,0 +1,1332 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ConfluenceSoapServiceService WSDL service -->
+
+  <service name="confluenceservice-v2" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"/>
+      <parameter name="wsdlServiceElement" value="ConfluenceSoapServiceService"/>
+      <parameter name="schemaUnqualified" value="http://xml.apache.org/xml-soap,http://rpc.confluence.atlassian.com,http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2,http://beans.soap.rpc.confluence.atlassian.com"/>
+      <parameter name="wsdlServicePort" value="confluenceservice-v2"/>
+      <parameter name="className" value="org.openehealth.ipf.labs.maven.confluence.export.stubs.ConfluenceserviceV2SoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ConfluenceSoapService"/>
+      <parameter name="typeMappingVersion" value="1.1"/>
+      <operation name="getPermissions" qname="operNS:getPermissions" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPermissionsReturn" returnType="rtns:ArrayOf_xsd_string" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:string" xmlns:tns2="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="search" qname="operNS:search" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="searchReturn" returnType="rtns:ArrayOf_tns2_RemoteSearchResult" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSearchResult" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="search" qname="operNS:search" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="searchReturn" returnType="rtns:ArrayOf_tns2_RemoteSearchResult" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSearchResult" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:Map" xmlns:tns="http://xml.apache.org/xml-soap"/>
+        <parameter qname="in3" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpace" qname="operNS:getSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpaceReturn" returnType="rtns:RemoteSpace" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getComment" qname="operNS:getComment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getCommentReturn" returnType="rtns:RemoteComment" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getChildren" qname="operNS:getChildren" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getChildrenReturn" returnType="rtns:ArrayOf_tns2_RemotePageSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePageSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getServerInfo" qname="operNS:getServerInfo" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getServerInfoReturn" returnType="rtns:RemoteServerInfo" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getGroups" qname="operNS:getGroups" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getGroupsReturn" returnType="rtns:ArrayOf_xsd_string" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:string" xmlns:tns2="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeGroup" qname="operNS:removeGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeUser" qname="operNS:removeUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addGroup" qname="operNS:addGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getAttachments" qname="operNS:getAttachments" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getAttachmentsReturn" returnType="rtns:ArrayOf_tns2_RemoteAttachment" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteAttachment" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addAttachment" qname="operNS:addAttachment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addAttachmentReturn" returnType="rtns:RemoteAttachment" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:RemoteAttachment" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in3" type="tns:base64Binary" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addAttachment" qname="operNS:addAttachment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addAttachmentReturn" returnType="rtns:RemoteAttachment" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteAttachment" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in2" type="tns:base64Binary" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeAttachment" qname="operNS:removeAttachment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeAttachmentReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getContentPermissionSet" qname="operNS:getContentPermissionSet" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getContentPermissionSetReturn" returnType="rtns:RemoteContentPermissionSet" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getContentPermissionSets" qname="operNS:getContentPermissionSets" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getContentPermissionSetsReturn" returnType="rtns:ArrayOf_tns2_RemoteContentPermissionSet" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteContentPermissionSet" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getComments" qname="operNS:getComments" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getCommentsReturn" returnType="rtns:ArrayOf_tns2_RemoteComment" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteComment" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addComment" qname="operNS:addComment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addCommentReturn" returnType="rtns:RemoteComment" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteComment" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeComment" qname="operNS:removeComment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeCommentReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getUser" qname="operNS:getUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getUserReturn" returnType="rtns:RemoteUser" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPage" qname="operNS:getPage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPageReturn" returnType="rtns:RemotePage" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPage" qname="operNS:getPage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPageReturn" returnType="rtns:RemotePage" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="isPluginEnabled" qname="operNS:isPluginEnabled" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="isPluginEnabledReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="login" qname="operNS:login" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="loginReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="AuthenticationFailedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.AuthenticationFailedException" type="tns:AuthenticationFailedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getClusterInformation" qname="operNS:getClusterInformation" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getClusterInformationReturn" returnType="rtns:RemoteClusterInformation" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getDescendents" qname="operNS:getDescendents" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getDescendentsReturn" returnType="rtns:ArrayOf_tns2_RemotePageSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePageSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getAncestors" qname="operNS:getAncestors" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getAncestorsReturn" returnType="rtns:ArrayOf_tns2_RemotePageSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePageSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="logout" qname="operNS:logout" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="logoutReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getAttachment" qname="operNS:getAttachment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getAttachmentReturn" returnType="rtns:RemoteAttachment" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addUser" qname="operNS:addUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteUser" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getRelatedLabels" qname="operNS:getRelatedLabels" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getRelatedLabelsReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpaces" qname="operNS:getSpaces" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpacesReturn" returnType="rtns:ArrayOf_tns2_RemoteSpaceSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSpaceSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpaceGroup" qname="operNS:getSpaceGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpaceGroupReturn" returnType="rtns:RemoteSpaceGroup" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="AlreadyExistsException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.AlreadyExistsException" type="tns:AlreadyExistsException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpaceGroups" qname="operNS:getSpaceGroups" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpaceGroupsReturn" returnType="rtns:ArrayOf_tns2_RemoteSpaceGroup" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSpaceGroup" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeSpace" qname="operNS:removeSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPages" qname="operNS:getPages" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPagesReturn" returnType="rtns:ArrayOf_tns2_RemotePageSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePageSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPagePermissions" qname="operNS:getPagePermissions" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPagePermissionsReturn" returnType="rtns:ArrayOf_tns2_RemotePermission" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePermission" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setContentPermissions" qname="operNS:setContentPermissions" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setContentPermissionsReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:ArrayOf_tns2_RemoteContentPermission" xmlns:tns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="moveAttachment" qname="operNS:moveAttachment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="moveAttachmentReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in4" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="editComment" qname="operNS:editComment" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="editCommentReturn" returnType="rtns:RemoteComment" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteComment" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getTopLevelPages" qname="operNS:getTopLevelPages" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getTopLevelPagesReturn" returnType="rtns:ArrayOf_tns2_RemotePageSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePageSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getAttachmentData" qname="operNS:getAttachmentData" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getAttachmentDataReturn" returnType="rtns:base64Binary" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="isWatchingSpace" qname="operNS:isWatchingSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="isWatchingSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="isWatchingPage" qname="operNS:isWatchingPage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="isWatchingPageReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getTrashContents" qname="operNS:getTrashContents" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getTrashContentsReturn" returnType="rtns:RemoteContentSummaries" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="emptyTrash" qname="operNS:emptyTrash" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="emptyTrashReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="deactivateUser" qname="operNS:deactivateUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="deactivateUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="reactivateUser" qname="operNS:reactivateUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="reactivateUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addSpace" qname="operNS:addSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addSpaceReturn" returnType="rtns:RemoteSpace" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteSpace" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="AlreadyExistsException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.AlreadyExistsException" type="tns:AlreadyExistsException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getRecentlyUsedLabels" qname="operNS:getRecentlyUsedLabels" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getRecentlyUsedLabelsReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getRecentlyUsedLabelsInSpace" qname="operNS:getRecentlyUsedLabelsInSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getRecentlyUsedLabelsInSpaceReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getMostPopularLabels" qname="operNS:getMostPopularLabels" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getMostPopularLabelsReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getMostPopularLabelsInSpace" qname="operNS:getMostPopularLabelsInSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getMostPopularLabelsInSpaceReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addUserToGroup" qname="operNS:addUserToGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addUserToGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="installPlugin" qname="operNS:installPlugin" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="installPluginReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:base64Binary" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPermissionsForUser" qname="operNS:getPermissionsForUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPermissionsForUserReturn" returnType="rtns:ArrayOf_xsd_string" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:string" xmlns:tns2="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeAllPermissionsForGroup" qname="operNS:removeAllPermissionsForGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeAllPermissionsForGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeSpaceGroup" qname="operNS:removeSpaceGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeSpaceGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getRelatedLabelsInSpace" qname="operNS:getRelatedLabelsInSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getRelatedLabelsInSpaceReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpacesContainingContentWithLabel" qname="operNS:getSpacesContainingContentWithLabel" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpacesContainingContentWithLabelReturn" returnType="rtns:ArrayOf_tns2_RemoteSpace" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSpace" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpacesWithLabel" qname="operNS:getSpacesWithLabel" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpacesWithLabelReturn" returnType="rtns:ArrayOf_tns2_RemoteSpace" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSpace" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getLabelsByDetail" qname="operNS:getLabelsByDetail" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getLabelsByDetailReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in4" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="movePageToTopLevel" qname="operNS:movePageToTopLevel" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="movePageToTopLevelReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="renderContent" qname="operNS:renderContent" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="renderContentReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="renderContent" qname="operNS:renderContent" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="renderContentReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in4" type="tns:Map" xmlns:tns="http://xml.apache.org/xml-soap"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="exportSpace" qname="operNS:exportSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="exportSpaceReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="exportSpace" qname="operNS:exportSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="exportSpaceReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeUserFromGroup" qname="operNS:removeUserFromGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeUserFromGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setEnableWysiwyg" qname="operNS:setEnableWysiwyg" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setEnableWysiwygReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getUserGroups" qname="operNS:getUserGroups" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getUserGroupsReturn" returnType="rtns:ArrayOf_xsd_string" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:string" xmlns:tns2="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="isPluginInstalled" qname="operNS:isPluginInstalled" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="isPluginInstalledReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getPageSummary" qname="operNS:getPageSummary" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPageSummaryReturn" returnType="rtns:RemotePageSummary" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPageSummary" qname="operNS:getPageSummary" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPageSummaryReturn" returnType="rtns:RemotePageSummary" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getPageHistory" qname="operNS:getPageHistory" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getPageHistoryReturn" returnType="rtns:ArrayOf_tns2_RemotePageHistory" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemotePageHistory" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="movePage" qname="operNS:movePage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="movePageReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removePage" qname="operNS:removePage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removePageReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="storePage" qname="operNS:storePage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="storePageReturn" returnType="rtns:RemotePage" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemotePage" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="VersionMismatchException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.VersionMismatchException" type="tns:VersionMismatchException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="updatePage" qname="operNS:updatePage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="updatePageReturn" returnType="rtns:RemotePage" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemotePage" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in2" type="tns:RemotePageUpdateOptions" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="VersionMismatchException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.VersionMismatchException" type="tns:VersionMismatchException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="purgeFromTrash" qname="operNS:purgeFromTrash" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="purgeFromTrashReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="watchPage" qname="operNS:watchPage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="watchPageReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="watchPageForUser" qname="operNS:watchPageForUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="watchPageForUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="watchSpace" qname="operNS:watchSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="watchSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getWatchersForPage" qname="operNS:getWatchersForPage" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getWatchersForPageReturn" returnType="rtns:ArrayOf_tns2_RemoteUser" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteUser" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="isWatchingSpaceForType" qname="operNS:isWatchingSpaceForType" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="isWatchingSpaceForTypeReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getWatchersForSpace" qname="operNS:getWatchersForSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getWatchersForSpaceReturn" returnType="rtns:ArrayOf_tns2_RemoteUser" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteUser" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpacesInGroup" qname="operNS:getSpacesInGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpacesInGroupReturn" returnType="rtns:ArrayOf_tns2_RemoteSpaceSummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSpaceSummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="storeSpace" qname="operNS:storeSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="storeSpaceReturn" returnType="rtns:RemoteSpace" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteSpace" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addSpaceGroup" qname="operNS:addSpaceGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addSpaceGroupReturn" returnType="rtns:RemoteSpaceGroup" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteSpaceGroup" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="AlreadyExistsException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.AlreadyExistsException" type="tns:AlreadyExistsException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addPersonalSpace" qname="operNS:addPersonalSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addPersonalSpaceReturn" returnType="rtns:RemoteSpace" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteSpace" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="AlreadyExistsException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.AlreadyExistsException" type="tns:AlreadyExistsException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getSpaceLevelPermissions" qname="operNS:getSpaceLevelPermissions" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getSpaceLevelPermissionsReturn" returnType="rtns:ArrayOf_xsd_string" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:string" xmlns:tns2="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addPermissionToSpace" qname="operNS:addPermissionToSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addPermissionToSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addGlobalPermissions" qname="operNS:addGlobalPermissions" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addGlobalPermissionsReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:ArrayOf_xsd_string" xmlns:tns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addGlobalPermission" qname="operNS:addGlobalPermission" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addGlobalPermissionReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addAnonymousUsePermission" qname="operNS:addAnonymousUsePermission" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addAnonymousUsePermissionReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addAnonymousViewUserProfilePermission" qname="operNS:addAnonymousViewUserProfilePermission" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addAnonymousViewUserProfilePermissionReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeAnonymousViewUserProfilePermission" qname="operNS:removeAnonymousViewUserProfilePermission" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeAnonymousViewUserProfilePermissionReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeGlobalPermission" qname="operNS:removeGlobalPermission" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeGlobalPermissionReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addPermissionsToSpace" qname="operNS:addPermissionsToSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addPermissionsToSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:ArrayOf_xsd_string" xmlns:tns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removePermissionFromSpace" qname="operNS:removePermissionFromSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removePermissionFromSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="editUser" qname="operNS:editUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="editUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteUser" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="isActiveUser" qname="operNS:isActiveUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="isActiveUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getActiveUsers" qname="operNS:getActiveUsers" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getActiveUsersReturn" returnType="rtns:ArrayOf_xsd_string" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:string" xmlns:tns2="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="changeMyPassword" qname="operNS:changeMyPassword" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="changeMyPasswordReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="changeUserPassword" qname="operNS:changeUserPassword" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="changeUserPasswordReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setUserInformation" qname="operNS:setUserInformation" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setUserInformationReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteUserInformation" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getUserInformation" qname="operNS:getUserInformation" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getUserInformationReturn" returnType="rtns:RemoteUserInformation" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setUserPreferenceBoolean" qname="operNS:setUserPreferenceBoolean" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setUserPreferenceBooleanReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getUserPreferenceBoolean" qname="operNS:getUserPreferenceBoolean" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getUserPreferenceBooleanReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setUserPreferenceLong" qname="operNS:setUserPreferenceLong" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setUserPreferenceLongReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getUserPreferenceLong" qname="operNS:getUserPreferenceLong" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getUserPreferenceLongReturn" returnType="rtns:long" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setUserPreferenceString" qname="operNS:setUserPreferenceString" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setUserPreferenceStringReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getUserPreferenceString" qname="operNS:getUserPreferenceString" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getUserPreferenceStringReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="hasUser" qname="operNS:hasUser" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="hasUserReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="hasGroup" qname="operNS:hasGroup" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="hasGroupReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addProfilePicture" qname="operNS:addProfilePicture" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addProfilePictureReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in4" type="tns:base64Binary" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getBlogEntryByDayAndTitle" qname="operNS:getBlogEntryByDayAndTitle" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getBlogEntryByDayAndTitleReturn" returnType="rtns:RemoteBlogEntry" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getBlogEntryByDateAndTitle" qname="operNS:getBlogEntryByDateAndTitle" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getBlogEntryByDateAndTitleReturn" returnType="rtns:RemoteBlogEntry" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in3" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in4" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in5" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getBlogEntry" qname="operNS:getBlogEntry" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getBlogEntryReturn" returnType="rtns:RemoteBlogEntry" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getBlogEntries" qname="operNS:getBlogEntries" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getBlogEntriesReturn" returnType="rtns:ArrayOf_tns2_RemoteBlogEntrySummary" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteBlogEntrySummary" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="storeBlogEntry" qname="operNS:storeBlogEntry" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="storeBlogEntryReturn" returnType="rtns:RemoteBlogEntry" xmlns:rtns="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteBlogEntry" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="VersionMismatchException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.VersionMismatchException" type="tns:VersionMismatchException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="exportSite" qname="operNS:exportSite" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="exportSiteReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="flushIndexQueue" qname="operNS:flushIndexQueue" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="flushIndexQueueReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="clearIndexQueue" qname="operNS:clearIndexQueue" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="clearIndexQueueReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getClusterNodeStatuses" qname="operNS:getClusterNodeStatuses" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getClusterNodeStatusesReturn" returnType="rtns:ArrayOf_tns2_RemoteNodeStatus" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteNodeStatus" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="importSpace" qname="operNS:importSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="importSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:base64Binary" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="setEnableAnonymousAccess" qname="operNS:setEnableAnonymousAccess" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="setEnableAnonymousAccessReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:boolean" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getLabelsById" qname="operNS:getLabelsById" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getLabelsByIdReturn" returnType="rtns:ArrayOf_tns2_RemoteLabel" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteLabel" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getLabelContentById" qname="operNS:getLabelContentById" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getLabelContentByIdReturn" returnType="rtns:ArrayOf_tns2_RemoteSearchResult" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSearchResult" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getLabelContentByName" qname="operNS:getLabelContentByName" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getLabelContentByNameReturn" returnType="rtns:ArrayOf_tns2_RemoteSearchResult" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSearchResult" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="getLabelContentByObject" qname="operNS:getLabelContentByObject" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="getLabelContentByObjectReturn" returnType="rtns:ArrayOf_tns2_RemoteSearchResult" xmlns:rtns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" returnItemType="tns2:RemoteSearchResult" xmlns:tns2="http://beans.soap.rpc.confluence.atlassian.com" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteLabel" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addLabelByName" qname="operNS:addLabelByName" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addLabelByNameReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addLabelById" qname="operNS:addLabelById" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addLabelByIdReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addLabelByObject" qname="operNS:addLabelByObject" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addLabelByObjectReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteLabel" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addLabelByNameToSpace" qname="operNS:addLabelByNameToSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addLabelByNameToSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeLabelByName" qname="operNS:removeLabelByName" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeLabelByNameReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeLabelById" qname="operNS:removeLabelById" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeLabelByIdReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeLabelByObject" qname="operNS:removeLabelByObject" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeLabelByObjectReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:RemoteLabel" xmlns:tns="http://beans.soap.rpc.confluence.atlassian.com"/>
+        <parameter qname="in2" type="tns:long" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeLabelByNameFromSpace" qname="operNS:removeLabelByNameFromSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeLabelByNameFromSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="InvalidSessionException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException" type="tns:InvalidSessionException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeAnonymousUsePermission" qname="operNS:removeAnonymousUsePermission" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeAnonymousUsePermissionReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addAnonymousPermissionToSpace" qname="operNS:addAnonymousPermissionToSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addAnonymousPermissionToSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="addAnonymousPermissionsToSpace" qname="operNS:addAnonymousPermissionsToSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="addAnonymousPermissionsToSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:ArrayOf_xsd_string" xmlns:tns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="removeAnonymousPermissionFromSpace" qname="operNS:removeAnonymousPermissionFromSpace" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="removeAnonymousPermissionFromSpaceReturn" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in2" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="NotPermittedException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException" type="tns:NotPermittedException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <operation name="convertWikiToStorageFormat" qname="operNS:convertWikiToStorageFormat" xmlns:operNS="http://soap.rpc.confluence.atlassian.com" returnQName="convertWikiToStorageFormatReturn" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="in0" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="in1" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <fault name="RemoteException" qname="fns:fault" xmlns:fns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2" class="org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException" type="tns:RemoteException" xmlns:tns="http://rpc.confluence.atlassian.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="addGroup getMostPopularLabels removeAnonymousUsePermission addUser getAttachmentData installPlugin removeLabelByNameFromSpace getRelatedLabelsInSpace getSpacesInGroup isActiveUser addLabelByName getPermissions search setContentPermissions addPersonalSpace convertWikiToStorageFormat addAnonymousPermissionsToSpace deactivateUser addUserToGroup removeSpace getGroups addLabelByNameToSpace getUserPreferenceLong getBlogEntryByDateAndTitle getContentPermissionSet setUserPreferenceString getSpacesWithLabel flushIndexQueue getPageHistory addLabelById getRecentlyUsedLabelsInSpace exportSpace removeAnonymousPermissionFromSpace addLabelByObject changeMyPassword renderContent getPages reactivateUser getActiveUsers hasUser getTrashContents setEnableWysiwyg removeAnonymousViewUserProfilePermission setEnableAnonymousAccess getComment removeSpaceGroup addAnonymousUsePermission getAttachment exportSite removeUser removeLabelByName addGlobalPermissions getRelatedLabels removeGlobalPermission getContentPermissionSets getUser removeUserFromGroup setUserPreferenceBoolean getUserPreferenceBoolean movePage isPluginInstalled getLabelContentByName addProfilePicture logout getPageSummary addSpace addAttachment getSpaceGroups removeLabelById getBlogEntry emptyTrash getWatchersForSpace getChildren getServerInfo getPermissionsForUser getBlogEntries getUserInformation storePage movePageToTopLevel getLabelContentByObject addComment login addGlobalPermission isWatchingSpace watchPageForUser removeComment purgeFromTrash addSpaceGroup removeGroup getMostPopularLabelsInSpace getPagePermissions isWatchingSpaceForType getPage getSpacesContainingContentWithLabel getUserGroups editComment addAnonymousViewUserProfilePermission getClusterInformation getDescendents getLabelContentById removeAttachment removePage isPluginEnabled removeAllPermissionsForGroup clearIndexQueue getLabelsByDetail addPermissionsToSpace changeUserPassword getSpace getRecentlyUsedLabels isWatchingPage setUserPreferenceLong getAttachments getLabelsById addPermissionToSpace watchSpace storeBlogEntry getSpaceGroup removeLabelByObject editUser getUserPreferenceString watchPage moveAttachment getAncestors getComments storeSpace setUserInformation getWatchersForPage getBlogEntryByDayAndTitle hasGroup getClusterNodeStatuses addAnonymousPermissionToSpace importSpace removePermissionFromSpace getSpaces updatePage getSpaceLevelPermissions getTopLevelPages"/>
+
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteSpaceGroup"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSpaceGroup"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteUser"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteUser"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteContentPermission"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentPermission[]"
+        innerType="cmp-ns:RemoteContentPermission" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemotePage"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_xsd_string"
+        type="java:java.lang.String[]"
+        innerType="cmp-ns:string" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:RemoteException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteUser"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteUser[]"
+        innerType="cmp-ns:RemoteUser" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://xml.apache.org/xml-soap"
+        qname="ns:mapItem"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.MapItem"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteBlogEntrySummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteBlogEntrySummary[]"
+        innerType="cmp-ns:RemoteBlogEntrySummary" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteSearchResult"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSearchResult"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemotePageSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePageSummary[]"
+        innerType="cmp-ns:RemotePageSummary" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteNodeStatus"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteNodeStatus"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteSpaceGroup"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSpaceGroup[]"
+        innerType="cmp-ns:RemoteSpaceGroup" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:AbstractRemotePageSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.AbstractRemotePageSummary"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemotePageHistory"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePageHistory"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteBlogEntrySummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteBlogEntrySummary"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemotePageUpdateOptions"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePageUpdateOptions"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteLabel"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteLabel"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteServerInfo"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteServerInfo"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteLabel"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteLabel[]"
+        innerType="cmp-ns:RemoteLabel" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteAttachment"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteAttachment[]"
+        innerType="cmp-ns:RemoteAttachment" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteSpaceSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSpaceSummary[]"
+        innerType="cmp-ns:RemoteSpaceSummary" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemotePageSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePageSummary"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteContentPermissionSet"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentPermissionSet"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteComment"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteComment"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteAttachment"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteAttachment"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:NotPermittedException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.NotPermittedException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemotePageHistory"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePageHistory[]"
+        innerType="cmp-ns:RemotePageHistory" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteContentSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentSummary"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:InvalidSessionException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.InvalidSessionException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:VersionMismatchException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.VersionMismatchException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteContentPermissionSet"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentPermissionSet[]"
+        innerType="cmp-ns:RemoteContentPermissionSet" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteSpace"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSpace"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:AlreadyExistsException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.AlreadyExistsException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteContentSummaries"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentSummaries"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteSpaceSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSpaceSummary"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteNodeStatus"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteNodeStatus[]"
+        innerType="cmp-ns:RemoteNodeStatus" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemotePermission"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePermission[]"
+        innerType="cmp-ns:RemotePermission" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteUserInformation"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteUserInformation"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteComment"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteComment[]"
+        innerType="cmp-ns:RemoteComment" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteContentSummary"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentSummary[]"
+        innerType="cmp-ns:RemoteContentSummary" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteSpace"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSpace[]"
+        innerType="cmp-ns:RemoteSpace" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteContentPermission"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteContentPermission"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteBlogEntry"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteBlogEntry"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://confluence.atlassian.com/rpc/soap-axis/confluenceservice-v2"
+        qname="ns:ArrayOf_tns2_RemoteSearchResult"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteSearchResult[]"
+        innerType="cmp-ns:RemoteSearchResult" xmlns:cmp-ns="http://beans.soap.rpc.confluence.atlassian.com"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemoteClusterInformation"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteClusterInformation"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://beans.soap.rpc.confluence.atlassian.com"
+        qname="ns:RemotePermission"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.RemotePermission"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://rpc.confluence.atlassian.com"
+        qname="ns:AuthenticationFailedException"
+        type="java:org.openehealth.ipf.labs.maven.confluence.export.stubs.AuthenticationFailedException"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+  </service>
+</deployment>
