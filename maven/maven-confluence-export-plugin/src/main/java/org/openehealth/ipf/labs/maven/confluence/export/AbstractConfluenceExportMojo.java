@@ -67,7 +67,7 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
     /**
      * @parameter 
      */
-    protected Export export;
+    protected Space export;
  
     
     /**
