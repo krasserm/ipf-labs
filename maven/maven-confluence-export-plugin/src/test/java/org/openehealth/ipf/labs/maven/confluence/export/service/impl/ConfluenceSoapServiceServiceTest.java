@@ -1,39 +1,46 @@
 package org.openehealth.ipf.labs.maven.confluence.export.service.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.MessageFormat;
 
-import org.apache.commons.httpclient.Credentials;
-import org.apache.commons.httpclient.HeaderElement;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.RequestEntity;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.apache.commons.httpclient.params.HttpClientParams;
+import org.apache.http.*;
+import org.apache.http.auth.*;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.entity.StringEntity;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openehealth.ipf.labs.maven.confluence.export.stubs.RemoteException;
 
+import static org.junit.Assert.*;
+
 /**
- * @author Boris Stanojevic
- */
+* @author Mitko Kolev
+* @author Boris Stanojevic
+*
+*/
 public class ConfluenceSoapServiceServiceTest {
 
-    HttpClient client = new HttpClient();
-    String user = "user";
-    String password = "password";
+    DefaultHttpClient client = new DefaultHttpClient();
+    String user = "test";
+    String password = "test";
+
+    private static final String CONFLUENCE_BASE_URL = "http://repo.openehealth.org/confluence";
+
+    private static final String LOGIN_ACTION = "/login.action";
+
+    private static final String LOGIN_GET_SUFFIX = "os_username={0}&os_password={1}&login=Log+In&os_destination=";
+
+    private static final String LOGOUT_ACTION = "/logout.action";
 
     @BeforeClass
     public static void beforeClass() {
@@ -43,14 +50,55 @@ public class ConfluenceSoapServiceServiceTest {
    
     @Before
     public void setUp() {
-        HttpClientParams params = new HttpClientParams();
-        params.setAuthenticationPreemptive(true);
-        client.getHostConfiguration()
-                .setProxy("proxy.proxy.intercomponentware.com", 3128);
-        Credentials defaultcreds = new UsernamePasswordCredentials(user,
-                                                                   password);
-        client.getState().setCredentials(AuthScope.ANY, defaultcreds);
+        client.getCredentialsProvider().setCredentials(
+                new AuthScope("localhost", 80),
+                new UsernamePasswordCredentials(user, password));
+
+        HttpHost proxy = new HttpHost("proxy.proxy.intercomponentware.com", 3128);
+        client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+
+/*        client.getCredentialsProvider().setCredentials(
+                AuthScope.ANY,
+                new UsernamePasswordCredentials(user, password));
+        localContext = new BasicHttpContext();
+        BasicScheme basicAuth = new BasicScheme();
+        localContext.setAttribute("preemptive-auth", basicAuth);
+
+        client.addRequestInterceptor(new PreemptiveAuth(), 0);*/
     }
+
+
+    /*static class PreemptiveAuth implements HttpRequestInterceptor {
+
+        public void process(
+                final HttpRequest request,
+                final HttpContext context) throws HttpException, IOException {
+
+            AuthState authState = (AuthState) context.getAttribute(
+                    ClientContext.TARGET_AUTH_STATE);
+
+            // If no auth scheme avaialble yet, try to initialize it preemptively
+            if (authState.getAuthScheme() == null) {
+                AuthScheme authScheme = (AuthScheme) context.getAttribute(
+                        "preemptive-auth");
+                CredentialsProvider credsProvider = (CredentialsProvider) context.getAttribute(
+                        ClientContext.CREDS_PROVIDER);
+                HttpHost targetHost = (HttpHost) context.getAttribute(
+                        ExecutionContext.HTTP_TARGET_HOST);
+                if (authScheme != null) {
+                    Credentials creds = credsProvider.getCredentials(
+                            new AuthScope(
+                                    targetHost.getHostName(),
+                                    targetHost.getPort()));
+                    if (creds == null) {
+                        throw new HttpException("No credentials for preemptive authentication");
+                    }
+                    authState.setAuthScheme(authScheme);
+                    authState.setCredentials(creds);
+                }
+            }
+        }
+    } */
 
     protected static void enableProxy() {
         System.setProperty("http.proxyHost",
@@ -86,7 +134,7 @@ public class ConfluenceSoapServiceServiceTest {
                                                    "ipftools",
                                                    "TYPE_HTML");
 
-            String sessionId = requestSessionId("http://repo.openehealth.org/confluence",
+            String sessionId = requestSessionId(CONFLUENCE_BASE_URL,
                                                 user,
                                                 password);
 
@@ -100,59 +148,111 @@ public class ConfluenceSoapServiceServiceTest {
 
     @Test
     public void testAuthentication() throws Exception {
-        PostMethod sessionIdRequest = new PostMethod("http://repo.openehealth.org/confluence/login.action");
-        sessionIdRequest
-                .setRequestEntity(buildAuthenticationRequestEntity(user,
-                                                                   password));
+        String url = MessageFormat.format(CONFLUENCE_BASE_URL + LOGIN_ACTION + "?" + LOGIN_GET_SUFFIX,
+                                          new String[]{"blah", "blah"});
+        HttpGet incorrectRequest = new HttpGet(url);
 
-        int responseCode = client.executeMethod(sessionIdRequest);
-        assertEquals(302, responseCode);
-        String sessionID = extractSessionId(sessionIdRequest);
+        HttpResponse httpResponse = client.execute(incorrectRequest);
+        byte[] bytesResponse = getContentAsBytes(httpResponse);
+
+        assertTrue(new String(bytesResponse).contains("username and password are incorrect"));
+        assertEquals(200, httpResponse.getStatusLine().getStatusCode());
+
+        url = MessageFormat.format(CONFLUENCE_BASE_URL + LOGIN_ACTION + LOGIN_GET_SUFFIX,
+                                   new String[]{user, password});
+        HttpGet correctRequest = new HttpGet(url);
+        HttpResponse correctHttpResponse = client.execute(correctRequest);
+        byte[] correctBytesResponse = getContentAsBytes(correctHttpResponse);
+
+        assertFalse(new String(correctBytesResponse).contains("username and password are incorrect"));
+        assertEquals(200, httpResponse.getStatusLine().getStatusCode());
+
+        String sessionID = extractSessionId();
         assertNotNull(sessionID);
+
+        System.out.println(sessionID);
+
+        HttpGet logoutRequest = new HttpGet(CONFLUENCE_BASE_URL + LOGOUT_ACTION);
     }
 
-    public void downloadExportedFile(String sessionId, String exportedSpaceUri) throws Exception {
-        GetMethod get = new GetMethod(exportedSpaceUri);
-        get.addRequestHeader("Cookie",
-                             "confluence.browse.space.cookie=space-pages; confluence.list.pages.cookie=list-content-tree; JSESSIONID="
-                                     + sessionId);
-        get.addRequestHeader("Accept",
+
+    byte[] getContentAsBytes(HttpResponse httpResponse) throws IOException{
+        byte[] bytesResponse = null;
+        if (httpResponse.getEntity() != null) {
+            InputStream inStream = httpResponse.getEntity().getContent();
+            int l;
+            bytesResponse = new byte[4096];
+            while ((l = inStream.read(bytesResponse)) != -1) {
+            }
+        }
+        return bytesResponse;
+    }
+
+    public void downloadExportedFile(String sessionId, String exportedSpaceUri) {
+        HttpGet get = new HttpGet(exportedSpaceUri);
+        get.addHeader("Cookie",
+                             "confluence.browse.space.cookie=space-pages; " +
+                             "confluence.list.pages.cookie=list-content-tree; " +
+                             "JSESSIONID=" + sessionId);
+        get.addHeader("Accept",
                              "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-        get.addRequestHeader("Accept-Encoding", "gzip, deflate");
+        get.addHeader("Accept-Encoding", "gzip, deflate");
 
-        int statusCode = client.executeMethod(get);
-        System.out.println(statusCode);
-        downloadStreamTo(get.getResponseBodyAsStream(), "C:", "output.zip");
-        System.out.println(exportedSpaceUri);
-
+        HttpResponse httpResponse = null;
+        try {
+            httpResponse = client.execute(get);
+            System.out.println(httpResponse.getStatusLine().getStatusCode());
+            downloadStreamTo(httpResponse.getEntity().getContent(), "C:", "output.zip");
+            System.out.println(exportedSpaceUri);
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        } finally {
+            // Release the connection.
+            try {
+                if (httpResponse != null){
+                    httpResponse.getEntity().getContent().close();
+                }
+            } catch(Exception e){
+            }
+        }
     }
 
-    public RequestEntity buildAuthenticationRequestEntity(String userName, String password) throws Exception {
-        String content = "os_username=" + user + "&os_password=" + password
-                + "&login=Log+In&os_destination=";
+    public StringEntity buildAuthenticationRequestEntity(String userName, String password) throws Exception {
+        String content = MessageFormat.format(LOGIN_GET_SUFFIX,
+                                              new String[]{userName, password});
         String contentType = "application/x-www-form-urlencoded";
         String encoding = "UTF-8";
-        return new StringRequestEntity(content, contentType, encoding);
+        return new StringEntity(content, contentType, encoding);
     }
 
-    public String extractSessionId(PostMethod sessionIdRequest) {
-        HeaderElement[] elements = sessionIdRequest
-                .getResponseHeader("Set-Cookie").getElements();
-        for (HeaderElement element : elements) {
-            if ("JSESSIONID".equals(element.getName())) {
-                return element.getValue();
+    public String extractSessionId() {
+        for (org.apache.http.cookie.Cookie cookie: client.getCookieStore().getCookies()){
+            if (cookie.getName().equals("JSESSIONID")){
+                return cookie.getValue();
             }
         }
         throw new IllegalStateException("No JSESSIONID found in Set-Cookie response header");
     }
 
-    public String requestSessionId(String page, String userName, String password) throws Exception {
-
-        PostMethod sessionIdRequest = new PostMethod(page + "/login.action");
-        sessionIdRequest.setRequestEntity(buildAuthenticationRequestEntity(user, password));
-        int responseCode = client.executeMethod(sessionIdRequest);
-        assertEquals(302, responseCode);
-        return extractSessionId(sessionIdRequest);
+    public String requestSessionId(String page, String userName, String pass) {
+        HttpPost sessionIdRequest = new HttpPost(page + LOGIN_ACTION);
+        HttpResponse httpResponse = null;
+        try {
+            sessionIdRequest.setEntity(buildAuthenticationRequestEntity(userName, pass));
+            httpResponse = client.execute(sessionIdRequest);
+            assertFalse(new String(getContentAsBytes(httpResponse)).contains("username and password are incorrect"));
+        } catch(Exception e){
+            return null;
+        } finally {
+            // Release the connection.
+            try {
+                if (httpResponse != null){
+                    httpResponse.getEntity().getContent().close();
+                }
+            } catch(Exception e){
+            }
+        }
+        return extractSessionId();
     }
 
     public void downloadStreamTo(InputStream zipFileInputStream,

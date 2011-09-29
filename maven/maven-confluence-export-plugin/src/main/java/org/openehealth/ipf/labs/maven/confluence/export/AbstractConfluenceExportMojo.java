@@ -26,14 +26,16 @@ import org.apache.maven.settings.Settings;
  * @author Mitko Kolev
  *
  */
-public abstract class AbstractConfluenceExportMojo extends AbstractMojo{
+public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
+
+
     /**
      * The Maven Settings.
      * @parameter default-value="${settings}"
      * @required
      * @readonly
      */
-    private Settings settings;
+    protected Settings settings;
     
     /**
      * Location of the output directory.
@@ -72,7 +74,7 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo{
      * Enables a proxy server for http access if it is configured within the Maven settings.
      */
     protected void enableProxy() {
-        if (settings == null || settings.getActiveProxy() == null) {
+        if (hasProxy()) {
             return;
         }
 
@@ -99,9 +101,17 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo{
             }
         }
     }
-    private boolean defined(String value) {
+
+    protected boolean defined(String value) {
         return value != null && !value.isEmpty();
     }
-    
+
+    protected boolean hasProxy(){
+        if (settings == null || settings.getActiveProxy() == null) {
+            return false;
+        }
+        return true;
+    }
+
    
 }

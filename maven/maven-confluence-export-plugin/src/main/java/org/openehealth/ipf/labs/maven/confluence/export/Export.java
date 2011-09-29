@@ -34,7 +34,7 @@ public class Export {
 
     private String password;
 
-    private Map<String, String> exportLocations;
+    private String [] exportFormats;
 
     public long getExportTimeout() {
         return exportTimeout;
@@ -76,12 +76,12 @@ public class Export {
         this.password = password;
     }
 
-    public Map<String, String> getExportLocations() {
-        return exportLocations;
+    public String[] getExportFormats() {
+        return exportFormats;
     }
 
-    public void setExportLocations(Map<String, String> exportLocations) {
-        this.exportLocations = exportLocations;
+    public void setExportFormats(String[] exportFormats) {
+        this.exportFormats = exportFormats;
     }
 
     public void validate(){
@@ -99,8 +99,8 @@ public class Export {
             validationFailureMsg.append("The confluence export user password is not set. Configure <password>${secret}</password> to configure it.");
             validationFailureMsg.append("Do not hard-code the password in the pom. Use a system property!\n");
         }
-        if (exportLocations == null || exportLocations.isEmpty()){
-            validationFailureMsg.append("The export locations are not set. Configure <exportLocations><html>...</html><pdf>...</pdf><xml>...</xml></exportLocations> to set one of them.");
+        if (exportFormats == null || exportFormats.length == 0){
+            validationFailureMsg.append("The export formats are not set. Configure exportFormats with one of xml, pdf, html. For example <exportFormats><param>html</param><param>pdf</param><param>xml</param></exportFormats>");
         }
         if (!validationFailureMsg.toString().isEmpty()){
             throw new RuntimeException("Invalid export configuration: " + validationFailureMsg.toString());
