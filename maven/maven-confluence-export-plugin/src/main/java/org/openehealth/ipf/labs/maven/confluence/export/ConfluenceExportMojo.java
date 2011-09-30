@@ -27,7 +27,22 @@ import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Confluence export Mojo.
- * 
+ *
+ * <configuration>
+ *     <url></url>
+ *     <user></user>
+ *     <password></password>
+ *     <confluenceVersion></confluenceVersion>
+ *     <exportSpaces>
+ *        <exportSpace>
+ *            <key>your-space-key</key>
+ *            <type>HTML/PDF/XML</type>
+ *            <timeout></timeout> //0 means infinite
+ *            <outputFileName></outputFileName>
+ *        </exportSpace>
+ *     </exportSpaces>
+ * </configuration>
+ *
  * @author Boris Stanojevic
  * @author Mitko Kolev
  */
