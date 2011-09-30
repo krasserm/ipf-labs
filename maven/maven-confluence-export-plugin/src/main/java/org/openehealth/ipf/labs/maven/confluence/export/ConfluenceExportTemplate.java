@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.List;
@@ -61,10 +62,11 @@ public abstract class ConfluenceExportTemplate {
             String sessionId = login(httpClient);
             for (ExportSpace space : spaces) {
                 String exportedUrl = export(space, isVersion30AndAbove);
+                String fileName = fileName(exportedUrl, space);
                 store(exportedUrl,
                       httpClient,
                       sessionId,
-                      new File(outputFolder, space.getOutputFileName()));
+                      new File(outputFolder, fileName));
             }
         } catch (RemoteException e) {
             throw new RuntimeException(e);
@@ -73,7 +75,20 @@ public abstract class ConfluenceExportTemplate {
         }
     }
 
-    protected abstract String  export(ExportSpace space, boolean isVersion30AndAbove) throws java.rmi.RemoteException;
+    private String fileName(String exportedUrl, ExportSpace space){
+        if (space.getOutputFileName() == null){
+            String[] splits = exportedUrl.split("/");
+            if (splits.length > 0){
+                return splits [splits.length  - 1];
+            } else {
+                throw new IllegalArgumentException("Unable to split the url " + exportedUrl);
+            }
+        } else {
+            return space.getOutputFileName();
+        }
+    }
+    protected abstract String
+            export(ExportSpace space, boolean isVersion30AndAbove) throws java.rmi.RemoteException;
 
     protected String login(DefaultHttpClient client) throws IOException {
         HttpPost sessionIdRequest = new HttpPost(confluenceBaseUrl.toExternalForm()
@@ -89,8 +104,8 @@ public abstract class ConfluenceExportTemplate {
             throw new RuntimeException(uee);
         } catch (ClientProtocolException cpe) {
             throw new RuntimeException(cpe);
-        } finally{
-            if (response != null){
+        } finally {
+            if (response != null) {
                 IOUtils.closeQuietly(response.getEntity().getContent());
             }
         }
@@ -138,7 +153,7 @@ public abstract class ConfluenceExportTemplate {
         OutputStream targetStream = null;
         log.debug("Downloading the content to " + targetFile.getAbsolutePath());
         try {
-            targetStream = new BufferedOutputStream(new FileOutputStream(targetFile), 1024 * 4 );
+            targetStream = new BufferedOutputStream(new FileOutputStream(targetFile), 1024 * 4);
             IOUtils.copy(content, targetStream);
         } catch (IOException ioe) {
             throw new RuntimeException(ioe);

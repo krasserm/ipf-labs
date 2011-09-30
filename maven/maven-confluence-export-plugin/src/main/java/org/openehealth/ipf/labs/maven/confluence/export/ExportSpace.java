@@ -47,13 +47,14 @@ public class ExportSpace {
      */
     private String type;
     /**
+     * How to name the file that is written. By default the file name that 
+     * is returned from Confluence is used.
      * @parameter
-     * @required
      */
     private String outputFileName;
     
     /**
-     * The default value is 2 minutes
+     * The default value is 2 minutes. 0 indicates no timeout
      * 
      * @parameter default-value="120000"
      */

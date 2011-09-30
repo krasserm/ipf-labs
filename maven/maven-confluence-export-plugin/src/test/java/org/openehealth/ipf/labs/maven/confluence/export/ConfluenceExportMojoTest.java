@@ -40,7 +40,7 @@ public class ConfluenceExportMojoTest {
         mojo.user = user;
         mojo.password = password;
         mojo.url = new URL(url);
-        mojo.outputDirectory = new File(".");
+        mojo.outputDirectory = new File("./target");
         
     }
     @Test
@@ -50,7 +50,6 @@ public class ConfluenceExportMojoTest {
 
         ExportSpace html = new ExportSpace();
         html.setType(ExportSpace.HTML);
-        html.setOutputFileName("output.zip");
         html.setKey("ipftools");
         mojo.exportSpaces.add(html);
         
