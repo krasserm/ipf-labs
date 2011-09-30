@@ -45,11 +45,12 @@ import org.apache.maven.plugin.MojoFailureException;
  *
  * @author Boris Stanojevic
  * @author Mitko Kolev
+ *
+ * @goal exportSpace
  */
 public class ConfluenceExportMojo extends AbstractConfluenceExportMojo {
 
     private ConfluenceExportTemplate confluenceTemplate;
-    private DefaultHttpClient client;
 
     /**
      * @parameter
@@ -78,8 +79,6 @@ public class ConfluenceExportMojo extends AbstractConfluenceExportMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        client = new DefaultHttpClient();
-        
         if (hasProxy()) {
             enableAxisProxy();
             configureHttpClientProxy();

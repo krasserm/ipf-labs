@@ -112,6 +112,7 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
                     .setCredentials(new AuthScope(proxy.getHostName(), proxy.getPort()),
                                     new UsernamePasswordCredentials(proxyUserName, proxyPassword));
         }
+        System.out.println("PROXY HOST DEFINED: " + activeProxy.getHost()+":"+ activeProxy.getPort());
         client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
     }
     

@@ -55,49 +55,7 @@ public class ConfluenceSoapServiceServiceTest {
 
         HttpHost proxy = new HttpHost("proxy.proxy.intercomponentware.com", 3128);
         client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
-
-/*        client.getCredentialsProvider().setCredentials(
-                AuthScope.ANY,
-                new UsernamePasswordCredentials(user, password));
-        localContext = new BasicHttpContext();
-        BasicScheme basicAuth = new BasicScheme();
-        localContext.setAttribute("preemptive-auth", basicAuth);
-
-        client.addRequestInterceptor(new PreemptiveAuth(), 0);*/
     }
-
-
-    /*static class PreemptiveAuth implements HttpRequestInterceptor {
-
-        public void process(
-                final HttpRequest request,
-                final HttpContext context) throws HttpException, IOException {
-
-            AuthState authState = (AuthState) context.getAttribute(
-                    ClientContext.TARGET_AUTH_STATE);
-
-            // If no auth scheme avaialble yet, try to initialize it preemptively
-            if (authState.getAuthScheme() == null) {
-                AuthScheme authScheme = (AuthScheme) context.getAttribute(
-                        "preemptive-auth");
-                CredentialsProvider credsProvider = (CredentialsProvider) context.getAttribute(
-                        ClientContext.CREDS_PROVIDER);
-                HttpHost targetHost = (HttpHost) context.getAttribute(
-                        ExecutionContext.HTTP_TARGET_HOST);
-                if (authScheme != null) {
-                    Credentials creds = credsProvider.getCredentials(
-                            new AuthScope(
-                                    targetHost.getHostName(),
-                                    targetHost.getPort()));
-                    if (creds == null) {
-                        throw new HttpException("No credentials for preemptive authentication");
-                    }
-                    authState.setAuthScheme(authScheme);
-                    authState.setCredentials(creds);
-                }
-            }
-        }
-    } */
 
     protected static void enableProxy() {
         System.setProperty("http.proxyHost",
