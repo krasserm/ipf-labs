@@ -30,8 +30,8 @@ import static org.junit.Assert.*;
 public class ConfluenceSoapServiceServiceTest {
 
     DefaultHttpClient client = new DefaultHttpClient();
-    String user = "mitko.kolev";
-    String password = "";
+    String user = "exporter";
+    String password = "confluence";
 
     private static final String CONFLUENCE_BASE_URL = "http://repo.openehealth.org/confluence";
 
@@ -88,7 +88,7 @@ public class ConfluenceSoapServiceServiceTest {
             String exportedSpaceUrl = null;
             String token = binding.login(user, password);
             exportedSpaceUrl = binding.exportSpace(token,
-                                                   "ipftools",
+                                                   "ipf2export",
                                                    "TYPE_HTML");
 
             String sessionId = requestSessionId(CONFLUENCE_BASE_URL,
@@ -96,7 +96,7 @@ public class ConfluenceSoapServiceServiceTest {
                                                 password);
 
             downloadExportedFile(sessionId, exportedSpaceUrl);
-
+            binding.logout(token);
         } catch (RemoteException e1) {
             throw new junit.framework.AssertionFailedError("RemoteException Exception caught: "
                     + e1);
@@ -130,6 +130,7 @@ public class ConfluenceSoapServiceServiceTest {
         System.out.println(sessionID);
 
         HttpGet logoutRequest = new HttpGet(CONFLUENCE_BASE_URL + LOGOUT_ACTION);
+        client.execute(correctRequest);
     }
 
 

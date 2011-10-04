@@ -7,18 +7,23 @@
 
 package org.openehealth.ipf.labs.maven.confluence.export.pdf;
 
-public class PdfExportRpcServiceTestCase extends junit.framework.TestCase {
-    public PdfExportRpcServiceTestCase(java.lang.String name) {
-        super(name);
-    }
+import org.junit.Ignore;
+import org.junit.Test;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+@Ignore
+public class PdfExportRpcServiceTestCase {
+
+    @Test
     public void testpdfexportWSDL() throws Exception {
         javax.xml.rpc.ServiceFactory serviceFactory = javax.xml.rpc.ServiceFactory.newInstance();
         java.net.URL url = new java.net.URL(new org.openehealth.ipf.labs.maven.confluence.export.pdf.PdfExportRpcServiceLocator().getpdfexportAddress() + "?WSDL");
         javax.xml.rpc.Service service = serviceFactory.createService(url, new org.openehealth.ipf.labs.maven.confluence.export.pdf.PdfExportRpcServiceLocator().getServiceName());
         assertTrue(service != null);
     }
-
+    @Test
     public void test1pdfexportExportSpace() throws Exception {
         org.openehealth.ipf.labs.maven.confluence.export.pdf.PdfexportSoapBindingStub binding;
         try {
@@ -45,7 +50,7 @@ public class PdfExportRpcServiceTestCase extends junit.framework.TestCase {
         }
             // TBD - validate results
     }
-
+    @Test
     public void test2pdfexportLogin() throws Exception {
         org.openehealth.ipf.labs.maven.confluence.export.pdf.PdfexportSoapBindingStub binding;
         try {
@@ -75,7 +80,7 @@ public class PdfExportRpcServiceTestCase extends junit.framework.TestCase {
         }
             // TBD - validate results
     }
-
+    @Test
     public void test3pdfexportLogout() throws Exception {
         org.openehealth.ipf.labs.maven.confluence.export.pdf.PdfexportSoapBindingStub binding;
         try {

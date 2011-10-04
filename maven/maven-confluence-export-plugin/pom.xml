@@ -4,7 +4,7 @@
     <artifactId>maven-confluence-export-plugin</artifactId>
     <name>maven-confluence-export-plugin</name>
     <packaging>maven-plugin</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	
     <parent>
         <groupId>org.openehealth.ipf.labs.maven</groupId>

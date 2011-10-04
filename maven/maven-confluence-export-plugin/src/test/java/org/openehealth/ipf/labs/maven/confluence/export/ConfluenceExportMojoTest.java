@@ -35,8 +35,8 @@ import org.junit.Test;
 public class ConfluenceExportMojoTest {
 
     private ConfluenceExportMojo mojo;
-    private String user = "export";
-    private String password = "";
+    private String user = "exporter";
+    private String password = "confluence";
     private String url = "http://repo.openehealth.org/confluence";
     private String proxyHost = "proxy.proxy.intercomponentware.com";
     private int proxyPort = 3128;
@@ -88,14 +88,14 @@ public class ConfluenceExportMojoTest {
     private void configureExportPDF(){
         ExportSpace html = new ExportSpace();
         html.setType(PDF.toString());
-        html.setKey("ipf2");
+        html.setKey("ipf2export");
         mojo.exportSpaces.add(html);
     }
     
     private void configureExportHTML(){
         ExportSpace html = new ExportSpace();
         html.setType(HTML.toString());
-        html.setKey("ipf2");
+        html.setKey("ipf2export");
         mojo.exportSpaces.add(html);
     }
 }
