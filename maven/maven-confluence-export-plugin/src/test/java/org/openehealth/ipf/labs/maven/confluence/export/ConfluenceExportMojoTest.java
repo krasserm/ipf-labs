@@ -49,8 +49,9 @@ public class ConfluenceExportMojoTest {
         mojo.password = password;
         mojo.url = new URL(url);
         mojo.outputDirectory = new File("target");
-        withProxy();
-
+        if (!Boolean.valueOf((String)System.getProperties().get("useNoProxyForExport"))){
+            withProxy();
+        }
     }
     private void withProxy(){
       Settings settings = new Settings();

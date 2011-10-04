@@ -53,14 +53,19 @@ public class ConfluenceSoapServiceServiceTest {
                 new AuthScope("localhost", 80),
                 new UsernamePasswordCredentials(user, password));
 
-        HttpHost proxy = new HttpHost("proxy.proxy.intercomponentware.com", 3128);
-        client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+        if (!Boolean.valueOf((String)System.getProperties().get("useNoProxyForExport"))){
+            HttpHost proxy = new HttpHost("proxy.proxy.intercomponentware.com", 3128);
+            client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+        }
+
     }
 
     protected static void enableProxy() {
-        System.setProperty("http.proxyHost",
-                           "proxy.proxy.intercomponentware.com");
-        System.setProperty("http.proxyPort", Integer.toString(3128));
+        if (!Boolean.valueOf((String)System.getProperties().get("useNoProxyForExport"))){
+            System.setProperty("http.proxyHost",
+                               "proxy.proxy.intercomponentware.com");
+            System.setProperty("http.proxyPort", Integer.toString(3128));
+        }
     }
 
     @Test
