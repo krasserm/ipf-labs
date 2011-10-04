@@ -3,3 +3,7 @@
 *.ipr
 target
 .idea
+
+/maven/maven-confluence-export-plugin/.classpath
+/maven/maven-confluence-export-plugin/.project
+/maven/maven-confluence-export-plugin/.settings/org.eclipse.jdt.core.prefs

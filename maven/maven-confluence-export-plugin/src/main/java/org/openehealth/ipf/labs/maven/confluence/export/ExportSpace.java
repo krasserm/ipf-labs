@@ -14,40 +14,28 @@
  * limitations under the License.
  */
 package org.openehealth.ipf.labs.maven.confluence.export;
-
-import java.util.HashMap;
-import java.util.Map;
-
-
 /**
  * @author Mitko Kolev
  * 
  */
 public class ExportSpace {
     
-    public static final String PDF = "PDF";
-    public static final String HTML = "HTML";
-    public static final String XML = "XML";
-    
-    public static Map<String, String> EXPORT_TYPES = new HashMap<String, String>();
-    
-    static {
-        EXPORT_TYPES.put(PDF, "TYPE_PDF");
-        EXPORT_TYPES.put(HTML, "TYPE_HTML");
-        EXPORT_TYPES.put(XML, "TYPE_XML");
-    }
+    enum EXPORT_TYPE { PDF, HTML, XML }
+   
     /**
+     * The space key of the space that will be exported.
      * @parameter
      * @required
      */
     private String key;
     /**
+     * Export type - one of { PDF, HTML, XML }
      * @parameter
      * @required
      */
     private String type;
     /**
-     * How to name the file that is written. By default the file name that 
+     * How to name the (zip) file that is written. By default the file name that 
      * is returned from Confluence is used.
      * @parameter
      */
@@ -84,5 +72,10 @@ public class ExportSpace {
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
-
+    @Override
+    public String toString() {
+       return  "[key:" + key + ",type:" + type + ",timeout:" + timeout + "ms]";
+    }
+    
+    
 }

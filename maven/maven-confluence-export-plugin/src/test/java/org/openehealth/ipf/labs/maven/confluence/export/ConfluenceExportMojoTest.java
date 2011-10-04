@@ -15,11 +15,17 @@
  */
 package org.openehealth.ipf.labs.maven.confluence.export;
 
+import static org.openehealth.ipf.labs.maven.confluence.export.ExportSpace.EXPORT_TYPE.HTML;
+import static org.openehealth.ipf.labs.maven.confluence.export.ExportSpace.EXPORT_TYPE.PDF;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.maven.settings.Proxy;
+import org.apache.maven.settings.Settings;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -29,9 +35,11 @@ import org.junit.Test;
 public class ConfluenceExportMojoTest {
 
     private ConfluenceExportMojo mojo;
-    private String user = "mitko.kolev";
+    private String user = "export";
     private String password = "";
     private String url = "http://repo.openehealth.org/confluence";
+    private String proxyHost = "proxy.proxy.intercomponentware.com";
+    private int proxyPort = 3128;
     
     @Before
     public void setUp() throws Exception {
@@ -40,19 +48,54 @@ public class ConfluenceExportMojoTest {
         mojo.user = user;
         mojo.password = password;
         mojo.url = new URL(url);
-        mojo.outputDirectory = new File("./target");
-        
+        mojo.outputDirectory = new File("target");
+        withProxy();
+
+    }
+    private void withProxy(){
+      Settings settings = new Settings();
+      settings.getProxies().add(new Proxy());
+      settings.getActiveProxy().setHost(proxyHost);
+      settings.getActiveProxy().setPort(proxyPort);
+      mojo.settings = settings; 
     }
     @Test
+    @Ignore
     public void testExportHtml() throws Exception {
-        
         mojo.exportSpaces = new ArrayList<ExportSpace>();
-
-        ExportSpace html = new ExportSpace();
-        html.setType(ExportSpace.HTML);
-        html.setKey("ipftools");
-        mojo.exportSpaces.add(html);
+        configureExportHTML();
+        mojo.execute();
+    }
+    
+    @Test
+    @Ignore
+    public void testExportPDF() throws Exception {
+        mojo.exportSpaces = new ArrayList<ExportSpace>();
+        configureExportPDF();
+        mojo.execute();
+    }
+    
+    @Test
+    public void testExportHTMLandPDF() throws Exception {
+        mojo.exportSpaces = new ArrayList<ExportSpace>();
+        
+        configureExportHTML();
+        configureExportPDF();
         
         mojo.execute();
+    }
+    
+    private void configureExportPDF(){
+        ExportSpace html = new ExportSpace();
+        html.setType(PDF.toString());
+        html.setKey("ipf2");
+        mojo.exportSpaces.add(html);
+    }
+    
+    private void configureExportHTML(){
+        ExportSpace html = new ExportSpace();
+        html.setType(HTML.toString());
+        html.setKey("ipf2");
+        mojo.exportSpaces.add(html);
     }
 }

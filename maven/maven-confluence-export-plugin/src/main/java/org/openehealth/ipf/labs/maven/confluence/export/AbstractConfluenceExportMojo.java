@@ -23,18 +23,15 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.project.MavenProject;
 import org.apache.maven.settings.Proxy;
 import org.apache.maven.settings.Settings;
-
 /**
  * @author Mitko Kolev
  *
  */
 public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
 
-    protected DefaultHttpClient client = new DefaultHttpClient();
-    
+    protected DefaultHttpClient client;
     /**
      * The Maven Settings.
      * @parameter default-value="${settings}"
@@ -42,7 +39,7 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
      * @readonly
      */
     protected Settings settings;
-    
+
     /**
      * Location of the output directory.
      * @parameter expression="${output.directory}" default-value="${project.build.outputDirectory}"
@@ -56,22 +53,12 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
      * @required
      */
     protected File buildDirectory;
-
-    /**
-     * @parameter default-value="${project}"
-     * @required
-     * @readonly
-     */
-    protected MavenProject project;
     
     /**
      * @parameter default-value="${project.name}"
      * @readonly
      */
     protected String projectName;
- 
-
- 
     
     /**
      * Enables a proxy server for http access if it is configured within the Maven settings.
@@ -79,7 +66,6 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
     protected void enableAxisProxy() {
         Proxy activeProxy = settings.getActiveProxy();
         String protocol = activeProxy.getProtocol().isEmpty() ? "" : activeProxy.getProtocol();
-
         if (defined(activeProxy.getHost())) {
             System.setProperty(protocol + ".proxyHost", activeProxy.getHost());
         }
@@ -112,7 +98,7 @@ public abstract class AbstractConfluenceExportMojo extends AbstractMojo {
                     .setCredentials(new AuthScope(proxy.getHostName(), proxy.getPort()),
                                     new UsernamePasswordCredentials(proxyUserName, proxyPassword));
         }
-        System.out.println("PROXY HOST DEFINED: " + activeProxy.getHost()+":"+ activeProxy.getPort());
+        getLog().info("Using proxy: " + activeProxy.getHost()+":"+ activeProxy.getPort());
         client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
     }
     

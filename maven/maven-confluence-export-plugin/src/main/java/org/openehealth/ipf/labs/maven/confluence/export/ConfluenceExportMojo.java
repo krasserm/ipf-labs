@@ -15,11 +15,14 @@
  */
 package org.openehealth.ipf.labs.maven.confluence.export;
 
+import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.List;
 
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
+import javax.xml.rpc.ServiceException;
+
+import org.apache.http.HttpException;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -32,14 +35,16 @@ import org.apache.maven.plugin.MojoFailureException;
  *     <url></url>
  *     <user></user>
  *     <password></password>
+ *     <outputDirectory></outputDirectory>
  *     <confluenceVersion></confluenceVersion>
  *     <exportSpaces>
  *        <exportSpace>
  *            <key>your-space-key</key>
  *            <type>HTML/PDF/XML</type>
- *            <timeout></timeout> //0 means infinite
- *            <outputFileName></outputFileName>
+ *            <timeout>ms</timeout> //0 means no timeout
+ *            <outputFileName>exportedFileName.zip</outputFileName>
  *        </exportSpace>
+ *        ...
  *     </exportSpaces>
  * </configuration>
  *
@@ -50,7 +55,7 @@ import org.apache.maven.plugin.MojoFailureException;
  */
 public class ConfluenceExportMojo extends AbstractConfluenceExportMojo {
 
-    private ConfluenceExportTemplate confluenceTemplate;
+    private AbstractConfluenceExportTemplate confluenceTemplate;
 
     /**
      * @parameter
@@ -79,6 +84,7 @@ public class ConfluenceExportMojo extends AbstractConfluenceExportMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
+        client = new DefaultHttpClient();
         if (hasProxy()) {
             enableAxisProxy();
             configureHttpClientProxy();
@@ -88,7 +94,16 @@ public class ConfluenceExportMojo extends AbstractConfluenceExportMojo {
         boolean isVersion30AndAbove = isConfluenceVersion30andAbove();
         try {
             confluenceTemplate.export(client, exportSpaces, isVersion30AndAbove, this.outputDirectory);
-        }finally{
+        } catch (RemoteException e) {
+            throw new MojoExecutionException(e.getMessage(), e);
+        } catch (IOException e) {
+            throw new MojoExecutionException(e.getMessage() , e);
+        } catch (ServiceException e) {
+            throw new MojoExecutionException(e.getMessage() , e.getLinkedCause());
+        } catch (HttpException e){
+            throw new MojoExecutionException(e.getMessage() , e);
+        }    finally{
+        
             client.getConnectionManager().shutdown();
         }
     }
@@ -96,8 +111,6 @@ public class ConfluenceExportMojo extends AbstractConfluenceExportMojo {
     protected void initializeConfluenceTemplate() throws MojoExecutionException {
         confluenceTemplate = new ConfluenceV1ExportTemplate(url, user, password, getLog());
     }
-
-   
 
     protected boolean isConfluenceVersion30andAbove() {
         DefaultArtifactVersion version = new DefaultArtifactVersion(confluenceVersion);
