@@ -4,12 +4,12 @@
     <artifactId>maven-confluence-export-plugin</artifactId>
     <name>maven-confluence-export-plugin</name>
     <packaging>maven-plugin</packaging>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	
     <parent>
         <groupId>org.openehealth.ipf.labs.maven</groupId>
         <artifactId>maven</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>1.4</version>
     </parent>
 
     <properties>

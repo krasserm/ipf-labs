@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.openehealth.ipf.labs.maven</groupId>
         <artifactId>maven</artifactId>
-        <version>1.4-SNAPSHOT</version>
+        <version>1.4</version>
     </parent>
 
     <dependencies>
